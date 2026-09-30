@@ -1,0 +1,94 @@
+/* ==========================================================================
+   GUIA DO DESIGN SYSTEM · estilos usados só em design-system.html
+   (amostras de cor, escala tipográfica e régua de espaçamentos)
+   ========================================================================== */
+.amostras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: var(--esp-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.amostra {
+    overflow: hidden;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    background: var(--cor-fundo);
+    font-size: var(--fonte-xs);
+}
+.amostra__cor {
+    height: 4.5rem;
+    border-bottom: 1px solid var(--cor-borda);
+}
+.amostra__info {
+    display: flex;
+    flex-direction: column;
+    padding: var(--esp-2) var(--esp-3);
+}
+.amostra__info code {
+    color: var(--cor-texto-suave);
+}
+
+.escala {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.escala li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--esp-2) var(--esp-4);
+    padding-bottom: var(--esp-3);
+    border-bottom: 1px solid var(--cor-borda);
+}
+.escala code {
+    min-width: 12rem;
+    font-size: var(--fonte-xs);
+    color: var(--cor-texto-suave);
+}
+
+.regua {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.regua li {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-3);
+    font-size: var(--fonte-xs);
+}
+.regua code {
+    min-width: 9rem;
+}
+.regua__barra {
+    height: 1rem;
+    border-radius: 2px;
+    background: var(--cor-secundaria);
+}
+
+.vitrine {
+    padding: var(--esp-4);
+    border: 1px dashed var(--cor-borda);
+    border-radius: var(--raio-borda);
+    background: var(--cor-fundo);
+}
+.vitrine + .vitrine {
+    margin-top: var(--esp-4);
+}
+.vitrine__rotulo {
+    margin: 0 0 var(--esp-3);
+    font-size: var(--fonte-xs);
+    font-weight: var(--peso-forte);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cor-texto-suave);
+}

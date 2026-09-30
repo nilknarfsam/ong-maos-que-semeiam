@@ -1,0 +1,92 @@
+/* ==========================================================================
+   DESIGN SYSTEM · Instituto Mãos que Semeiam
+   Tokens globais. Nenhum componente deve usar cor, fonte ou espaço "solto":
+   tudo passa por var(--...). Para adaptar a plataforma a outra ONG,
+   basta trocar os valores deste arquivo.
+   ========================================================================== */
+
+:root {
+    /* ---------- CORES (tiradas do logotipo) ---------- */
+    /* Primárias */
+    --cor-primaria: #1F6F4A;          /* verde da marca: links, menu, botões (6,1:1 no branco) */
+    --cor-primaria-escura: #14492F;   /* hover e rodapé (10,4:1 com branco) */
+    --cor-primaria-clara: #E6F2EA;    /* fundo de destaque, halo de foco */
+
+    /* Secundárias */
+    --cor-secundaria: #F2A541;        /* âmbar: só botões de doação, SEMPRE com texto escuro (7,2:1) */
+    --cor-secundaria-escura: #8A4B00; /* âmbar em texto sobre branco (6,8:1) e anel de foco */
+
+    /* Neutras */
+    --cor-texto: #1F2A24;             /* texto principal (14,8:1) */
+    --cor-texto-suave: #4A5A51;       /* legendas e dicas (7,3:1) */
+    --cor-fundo: #FFFFFF;
+    --cor-fundo-alt: #F8F4EA;         /* creme */
+    --cor-borda: #D5DDD8;             /* decorativa */
+
+    /* Feedback */
+    --cor-erro: #B3261E;              /* 6,5:1 */
+    --cor-sucesso: #1E7A3E;           /* 5,4:1 */
+
+    /* ---------- TIPOGRAFIA (escala modular 1,25 a partir de 16px) ---------- */
+    --fonte-titulo: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --fonte-xs: 0.875rem;   /* 14px: legendas, dicas, badges (mínimo legível) */
+    --fonte-base: 1rem;     /* 16px: texto */
+    --fonte-md: 1.25rem;    /* 20px: h4 */
+    --fonte-lg: 1.563rem;   /* 25px: h3 */
+    --fonte-xl: clamp(1.563rem, 1.2rem + 1.5vw, 1.953rem);  /* h2: 25px → 31px */
+    --fonte-xxl: clamp(1.953rem, 1.4rem + 2.4vw, 2.441rem); /* h1: 31px → 39px */
+
+    --altura-linha-texto: 1.6;
+    --altura-linha-titulo: 1.2;
+    --peso-normal: 400;
+    --peso-forte: 700;
+    --peso-titulo: 800;
+
+    /* ---------- ESPAÇAMENTOS (escala de 8px) ---------- */
+    --esp-1: 0.25rem;  /* 4px  */
+    --esp-2: 0.5rem;   /* 8px  */
+    --esp-3: 1rem;     /* 16px */
+    --esp-4: 1.5rem;   /* 24px */
+    --esp-5: 2rem;     /* 32px */
+    --esp-6: 3rem;     /* 48px */
+    --esp-7: 4rem;     /* 64px */
+
+    /* ---------- FORMA, PROFUNDIDADE E MOVIMENTO ---------- */
+    --raio-borda: 0.5rem;
+    --raio-pilula: 999px;
+    --sombra-cartao: 0 2px 4px rgba(31, 42, 36, 0.08), 0 8px 24px rgba(31, 42, 36, 0.10);
+    --sombra-elevada: 0 12px 40px rgba(31, 42, 36, 0.25);
+    --transicao: 250ms ease-out;
+    --area-toque: 44px;
+
+    /* ---------- LAYOUT ---------- */
+    --largura-container: 1200px;
+    --largura-texto: 70ch;
+    --colunas: 12;
+    --gap-grid: var(--esp-4);
+
+    /* Camadas (z-index) */
+    --camada-menu: 100;
+    --camada-toast: 900;
+    --camada-modal: 1000;
+}
+
+/* BREAKPOINTS (mobile first, @media (min-width: ...))
+   Media queries não aceitam var(), por isso os valores ficam documentados aqui:
+   sm  576px  · celular grande / horizontal
+   md  768px  · tablet (menu hambúrguer → horizontal)
+   lg  992px  · notebook (conteúdo 8 + aside 4)
+   xl  1200px · desktop
+   xxl 1400px · desktop panorâmico (container 1320px) */
+@media (min-width: 1200px) {
+    :root { --gap-grid: var(--esp-5); }
+}
+@media (min-width: 1400px) {
+    :root { --largura-container: 1320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root { --transicao: 0ms; }
+}

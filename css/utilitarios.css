@@ -1,0 +1,10 @@
+/* ==========================================================================
+   UTILITÁRIOS · pequenas classes de apoio (usar com moderação)
+   ========================================================================== */
+.texto-centro   { text-align: center; }
+.texto-suave    { color: var(--cor-texto-suave); }
+.mt-0           { margin-top: 0; }
+.mb-0           { margin-bottom: 0; }
+.mb-4           { margin-bottom: var(--esp-4); }
+.mb-5           { margin-bottom: var(--esp-5); }
+.pilha          { display: flex; flex-direction: column; gap: var(--esp-3); }
