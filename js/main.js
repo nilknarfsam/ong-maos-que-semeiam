@@ -4,6 +4,7 @@
  * registra os eventos UMA vez (delegação) e inicia o roteador.
  */
 import { iniciarRoteador } from './modules/roteador.js';
+import { iniciarContraste } from './modules/contraste.js';
 import { iniciarMenu } from './modules/menu.js';
 import { registrarEventosFeedback } from './modules/feedback.js';
 import { iniciarProjetos, registrarEventosProjetos } from './telas/projetos.js';
@@ -17,6 +18,7 @@ const rotas = {
 
 const app = document.getElementById('app');
 
+iniciarContraste();
 iniciarMenu();
 registrarEventosFeedback();
 registrarEventosProjetos(app);

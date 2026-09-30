@@ -24,8 +24,29 @@ export function iniciarMenu() {
         definirAberto(botao.getAttribute('aria-expanded') !== 'true');
     });
 
+    menu.querySelectorAll('.menu__item--submenu').forEach((item) => {
+        item.addEventListener('focusout', (evento) => {
+            if (!item.contains(evento.relatedTarget)) delete item.dataset.fechado;
+        });
+        item.addEventListener('pointerleave', () => delete item.dataset.fechado);
+        item.addEventListener('keydown', (evento) => {
+            if (evento.key === 'ArrowDown') {
+                delete item.dataset.fechado;
+                item.querySelector('.submenu a').focus();
+                evento.preventDefault();
+            }
+        });
+    });
+
     // Esc fecha o menu e devolve o foco ao botão
     document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape') {
+            const item = document.activeElement.closest('.menu__item--submenu');
+            if (item && matchMedia('(min-width: 768px)').matches) {
+                item.dataset.fechado = '';
+                item.querySelector('a').focus();
+            }
+        }
         if (evento.key === 'Escape' && menu.classList.contains('menu--aberto')) {
             definirAberto(false);
             botao.focus();

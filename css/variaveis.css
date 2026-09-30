@@ -21,6 +21,7 @@
     --cor-texto-suave: #4A5A51;       /* legendas e dicas (7,3:1) */
     --cor-fundo: #FFFFFF;
     --cor-fundo-alt: #F8F4EA;         /* creme */
+    --cor-controle: #65776B;          /* bordas funcionais distinguíveis no fundo claro */
     --cor-borda: #D5DDD8;             /* decorativa */
 
     /* Feedback */
@@ -89,4 +90,23 @@
 
 @media (prefers-reduced-motion: reduce) {
     :root { --transicao: 0ms; }
+}
+
+/* EP IV: alto contraste sem alterar a identidade do tema padrão. */
+:root[data-contraste="alto"] {
+    color-scheme: dark;
+    --transicao: 0ms;
+    --cor-primaria: #FFFF00;
+    --cor-primaria-escura: #FFFF00;
+    --cor-primaria-clara: #1A1A1A;
+    --cor-secundaria: #FFFF00;
+    --cor-secundaria-escura: #FFFF00;
+    --cor-texto: #FFFFFF;
+    --cor-texto-suave: #FFFFFF;
+    --cor-fundo: #000000;
+    --cor-fundo-alt: #121212;
+    --cor-borda: #FFFFFF;
+    --cor-controle: #FFFFFF;
+    --cor-erro: #FFB4AB;
+    --cor-sucesso: #A8FFB0;
 }

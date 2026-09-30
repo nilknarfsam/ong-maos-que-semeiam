@@ -75,7 +75,7 @@
     visibility: hidden;
     opacity: 0;
     transform: translateY(-0.5rem);
-    transition: opacity var(--transicao), transform var(--transicao), visibility var(--transicao);
+    transition: opacity var(--transicao), transform var(--transicao);
 }
 .menu--aberto .menu__lista {
     visibility: visible;
@@ -162,7 +162,7 @@
         visibility: hidden;
         opacity: 0;
         transform: translateY(0.5rem);
-        transition: opacity var(--transicao), transform var(--transicao), visibility var(--transicao);
+        transition: opacity var(--transicao), transform var(--transicao);
     }
     .menu__item--submenu:focus-within > .submenu {
         visibility: visible;
@@ -1060,3 +1060,18 @@ form:not([novalidate]) .campo__entrada:user-valid {
     font-size: var(--fonte-xs);
     color: var(--cor-texto-suave);
 }
+
+/* EP IV: componentes que combinam fundos e textos de papéis diferentes. */
+.campo__entrada, .menu__botao { border-color: var(--cor-controle); }
+:root[data-contraste="alto"] .botao--doar,
+:root[data-contraste="alto"] .badge--aviso { color: var(--cor-fundo); }
+:root[data-contraste="alto"] .rodape a:hover { color: var(--cor-fundo); text-decoration: underline; }
+:root[data-contraste="alto"] .rodape :focus-visible { outline-color: var(--cor-fundo); }
+:root[data-contraste="alto"] .toast { background: var(--cor-fundo); color: var(--cor-texto); border: 2px solid var(--cor-borda); }
+:root[data-contraste="alto"] .toast__icone { color: var(--cor-texto); }
+:root[data-contraste="alto"] .campo--sucesso > .campo__entrada { background-image: none; }
+.menu__item--submenu[data-fechado] > .submenu { visibility: hidden; opacity: 0; }
+.submenu .menu__link { white-space: normal; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.campo__entrada::placeholder { color: var(--cor-texto-suave); opacity: 1; }
