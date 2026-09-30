@@ -77,7 +77,7 @@ O site precisa apresentar a organização, divulgar os projetos, mostrar a prest
 |---|---|---|---|
 | EP I | Fundamentos e estruturação: HTML5 semântico, formulário e diretórios | ✅ Entregue | tag `ep1` |
 | EP II | Design System, CSS3, Grid, Flexbox e componentes interativos | ✅ Entregue | tag `ep2` |
-| EP III | SPA em JavaScript: roteamento por hash, templates, eventos, validação, localStorage, Day.js e ES Modules | 🚧 Em andamento | tag `ep3` (na entrega) |
+| EP III | SPA em JavaScript: roteamento por hash, templates, eventos, validação, localStorage, Day.js e ES Modules | ✅ Entregue | tag `ep3` |
 | EP IV | (aguardando enunciado) | — | — |
 
 Cada entrega tem uma tag no Git. Para ver o site sem CSS (versão da EP I): `git checkout ep1`. Para voltar à versão atual: `git checkout main`.
@@ -251,6 +251,8 @@ O projeto segue as recomendações da **WCAG 2.1, nível AA**:
 | Contraste de cores | Script com a fórmula da WCAG 2.1 | todas as combinações de texto ≥ 4,5:1 |
 | Responsividade | navegador Chromium em 390px e 1280px | sem rolagem horizontal no celular nas 4 páginas |
 | Formulário | envio vazio e envio completo no navegador | envio vazio: alerta com 11 campos a corrigir e foco no primeiro; envio completo: modal com o primeiro nome e toast ao fechar |
+| HTML da versão `ep3`: `index.html`, páginas de redirecionamento, `html/design-system.html` e as 3 telas renderizadas pela SPA | `vnu.jar` | 0 erros e 0 avisos |
+| Testes da SPA | Playwright + Chromium, servidor local | navegação, voltar, F5, rota inválida, âncoras, rede lenta, offline, 404, formulário vazio e mal formatado, rascunho após recarregar, localStorage corrompido ou bloqueado, Day.js ausente e 390px sem rolagem horizontal. 6 falhas encontradas e corrigidas (seção 6A) |
 
 ## 9. Como executar
 
@@ -278,6 +280,7 @@ Uma ferramenta de IA generativa (Claude, da Anthropic) foi usada como apoio no p
 |---|---|---|
 | `ep1` | 28/09/2026 | Estrutura HTML5 semântica, 3 páginas, formulário com validação nativa e máscaras, imagens otimizadas |
 | `ep2` | 29/09/2026 | Design System em variáveis CSS, arquitetura em 6 arquivos CSS, Grid de 12 colunas com 5 *breakpoints*, menu responsivo com *dropdown*, componentes de *feedback*, página `design-system.html` e o CSS aplicado nas 3 páginas (validação visual e modal no cadastro) |
+| `ep3` | 29/09/2026 | SPA com roteamento por hash e views em `html/`, templates JavaScript a partir de dados, eventos com delegação, validação em JavaScript (RegEx, CPF, idade e consistência entre campos), localStorage (cadastros, rascunho e projeto de interesse), Day.js e código em ES Modules por camadas; pasta `img/` renomeada para `imagens/` |
 
 ## 12. Referências
 
