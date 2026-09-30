@@ -1,0 +1,25 @@
+{
+  "name": "instituto-maos-que-semeiam",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/servidor.mjs .",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/servidor.mjs dist",
+    "test": "playwright test",
+    "validate:html": "node scripts/validar-html.mjs",
+    "check": "npm run build && npm run metrics && npm test && npm run validate:html",
+    "metrics": "node scripts/metricas.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "esbuild": "0.28.2",
+    "html-minifier-terser": "7.2.0",
+    "vnu-jar": "26.9.27"
+  }
+}
