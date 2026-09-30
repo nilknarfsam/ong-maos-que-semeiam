@@ -6,242 +6,363 @@
     <meta name="description" content="Conheça os projetos sociais do Instituto Mãos que Semeiam e saiba como ser voluntário ou doar para as campanhas ativas.">
     <title>Projetos sociais | Instituto Mãos que Semeiam</title>
     <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;display=swap">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/utilitarios.css">
 </head>
 <body>
-    <a href="#conteudo">Pular para o conteúdo principal</a>
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo principal</a>
 
-    <header>
-        <a href="index.html">
-            <img src="img/logo.svg" alt="Instituto Mãos que Semeiam, página inicial" width="80" height="80">
-        </a>
-        <p>Instituto Mãos que Semeiam</p>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a class="marca" href="index.html">
+                <img src="img/logo.svg" alt="" width="48" height="48">
+                <span>Instituto Mãos que Semeiam<span class="visualmente-oculto">, página inicial</span></span>
+            </a>
 
-        <nav aria-label="Menu principal">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html" aria-current="page">Projetos</a></li>
-                <li><a href="cadastro.html">Seja voluntário ou doador</a></li>
-            </ul>
-        </nav>
+            <nav class="menu" aria-label="Menu principal">
+                <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu-lista">
+                    <span class="menu__icone" aria-hidden="true"></span>
+                    <span class="menu__texto">Menu</span>
+                </button>
+                <ul class="menu__lista" id="menu-lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li class="menu__item--submenu">
+                        <a class="menu__link" href="projetos.html" aria-current="page">Projetos</a>
+                        <ul class="submenu">
+                            <li><a class="menu__link" href="projetos.html#reforco">Reforço Escolar Semente</a></li>
+                            <li><a class="menu__link" href="projetos.html#cozinha">Cozinha Solidária</a></li>
+                            <li><a class="menu__link" href="projetos.html#jovem">Jovem Conectado</a></li>
+                            <li><a class="menu__link" href="projetos.html#horta">Horta Comunitária Viva</a></li>
+                            <li><a class="menu__link" href="projetos.html#voluntariado">Voluntariado</a></li>
+                            <li><a class="menu__link" href="projetos.html#doacao">Doações</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="menu__link" href="cadastro.html">Seja voluntário ou doador</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main id="conteudo">
-        <h1>Nossos projetos sociais</h1>
-        <p>
-            Aqui você conhece os quatro projetos permanentes do instituto e escolhe como participar:
-            doando seu tempo como voluntário ou contribuindo com uma de nossas campanhas.
-        </p>
-
-        <!-- Sumário interno: atalhos para os três caminhos da página -->
-        <nav aria-label="Nesta página">
-            <ul>
-                <li><a href="#projetos">Projetos em andamento</a></li>
-                <li><a href="#voluntariado">Como ser voluntário</a></li>
-                <li><a href="#doacao">Campanhas de doação</a></li>
-            </ul>
-        </nav>
-
-        <section id="projetos" aria-labelledby="titulo-projetos">
-            <h2 id="titulo-projetos">Projetos em andamento</h2>
-
-            <article id="reforco">
-                <h3>Reforço Escolar Semente</h3>
-                <figure>
-                    <picture>
-                        <source type="image/webp" srcset="img/projeto-reforco.webp">
-                        <img src="img/projeto-reforco.png" alt="Ilustração de um livro aberto, símbolo do projeto de reforço escolar" width="400" height="240" loading="lazy">
-                    </picture>
-                    <figcaption>Turmas pequenas, de até 12 crianças, com acompanhamento individual.</figcaption>
-                </figure>
-                <p>Aulas de reforço em português e matemática para crianças do ensino fundamental, no contraturno escolar.</p>
-                <dl>
-                    <dt>Público</dt>
-                    <dd>Crianças de 7 a 14 anos</dd>
-                    <dt>Quando</dt>
-                    <dd>Segunda a quinta, das 14h às 17h</dd>
-                </dl>
-                <h4>Como ajudar</h4>
-                <ul>
-                    <li><strong>Voluntário:</strong> dar aulas ou acompanhar a lição de casa.</li>
-                    <li><strong>Doação:</strong> material escolar e lanches para as turmas.</li>
-                </ul>
-                <p><a href="cadastro.html">Quero ajudar este projeto</a></p>
-            </article>
-            <article id="cozinha">
-                <h3>Cozinha Solidária</h3>
-                <figure>
-                    <picture>
-                        <source type="image/webp" srcset="img/projeto-cozinha.webp">
-                        <img src="img/projeto-cozinha.png" alt="Ilustração de uma panela com vapor, símbolo da Cozinha Solidária" width="400" height="240" loading="lazy">
-                    </picture>
-                    <figcaption>Refeições preparadas com alimentos doados e da horta comunitária.</figcaption>
-                </figure>
-                <p>Refeições gratuitas para famílias em situação de insegurança alimentar e distribuição mensal de cestas básicas.</p>
-                <dl>
-                    <dt>Público</dt>
-                    <dd>Famílias cadastradas no bairro</dd>
-                    <dt>Quando</dt>
-                    <dd>Terça, quinta e sábado, a partir das 11h</dd>
-                </dl>
-                <h4>Como ajudar</h4>
-                <ul>
-                    <li><strong>Voluntário:</strong> cozinhar, servir ou montar as cestas.</li>
-                    <li><strong>Doação:</strong> alimentos não perecíveis e gás de cozinha.</li>
-                </ul>
-                <p><a href="cadastro.html">Quero ajudar este projeto</a></p>
-            </article>
-            <article id="jovem">
-                <h3>Jovem Conectado</h3>
-                <figure>
-                    <picture>
-                        <source type="image/webp" srcset="img/projeto-jovem.webp">
-                        <img src="img/projeto-jovem.png" alt="Ilustração de um notebook com código na tela, símbolo do projeto Jovem Conectado" width="400" height="240" loading="lazy">
-                    </picture>
-                    <figcaption>Laboratório com 15 computadores recondicionados.</figcaption>
-                </figure>
-                <p>Oficinas de informática básica, pacote de escritório e introdução à programação web para jovens em busca do primeiro emprego.</p>
-                <dl>
-                    <dt>Público</dt>
-                    <dd>Jovens de 15 a 24 anos</dd>
-                    <dt>Quando</dt>
-                    <dd>Sábados, das 8h às 12h</dd>
-                </dl>
-                <h4>Como ajudar</h4>
-                <ul>
-                    <li><strong>Voluntário:</strong> ser instrutor ou mentor de carreira.</li>
-                    <li><strong>Doação:</strong> computadores usados e internet do laboratório.</li>
-                </ul>
-                <p><a href="cadastro.html">Quero ajudar este projeto</a></p>
-            </article>
-            <article id="horta">
-                <h3>Horta Comunitária Viva</h3>
-                <figure>
-                    <picture>
-                        <source type="image/webp" srcset="img/projeto-horta.webp">
-                        <img src="img/projeto-horta.png" alt="Ilustração de uma horta com mudas, símbolo da Horta Comunitária Viva" width="400" height="240" loading="lazy">
-                    </picture>
-                    <figcaption>Canteiros cuidados por famílias e voluntários.</figcaption>
-                </figure>
-                <p>Cultivo de hortaliças sem agrotóxicos, com oficinas de educação ambiental. Parte da colheita abastece a Cozinha Solidária.</p>
-                <dl>
-                    <dt>Público</dt>
-                    <dd>Famílias e escolas da região</dd>
-                    <dt>Quando</dt>
-                    <dd>Mutirões aos domingos, das 7h às 10h</dd>
-                </dl>
-                <h4>Como ajudar</h4>
-                <ul>
-                    <li><strong>Voluntário:</strong> participar dos mutirões de plantio e colheita.</li>
-                    <li><strong>Doação:</strong> mudas, adubo e ferramentas.</li>
-                </ul>
-                <p><a href="cadastro.html">Quero ajudar este projeto</a></p>
-            </article>
-        </section>
-
-        <!-- Caminho 1: voluntariado -->
-        <section id="voluntariado" aria-labelledby="titulo-voluntariado">
-            <h2 id="titulo-voluntariado">Como ser voluntário</h2>
-            <p>O voluntariado começa com poucos passos:</p>
-            <ol>
-                <li>Preencha o <a href="cadastro.html">formulário de cadastro</a>.</li>
-                <li>Nossa equipe entra em contato para uma conversa de boas-vindas.</li>
-                <li>Participe da formação inicial de 4 horas, aos sábados.</li>
-                <li>Comece no projeto e no horário que você escolheu.</li>
-            </ol>
-
-            <h3>Requisitos</h3>
-            <ul>
-                <li>Ter 16 anos ou mais (menores de 18 com autorização dos responsáveis).</li>
-                <li>Disponibilidade mínima de 2 horas por semana.</li>
-                <li>Compromisso com as regras de proteção de crianças e adolescentes.</li>
-            </ul>
-        </section>
-
-        <!-- Caminho 2: doação -->
-        <section id="doacao" aria-labelledby="titulo-doacao">
-            <h2 id="titulo-doacao">Campanhas de doação</h2>
-            <p>Doações podem ser únicas ou mensais. Estas são as campanhas ativas e quanto já foi arrecadado:</p>
-
-            <article>
-                <h3>Material escolar 2027</h3>
-                <p>Kits com cadernos, lápis e mochila para as 320 crianças do reforço escolar no início do ano letivo.</p>
+        <div class="secao secao--destaque">
+            <div class="container">
+                <h1>Nossos projetos sociais</h1>
                 <p>
-                    <label for="meta-escolar">Arrecadado: R$ 9.600 de R$ 16.000</label><br>
-                    <progress id="meta-escolar" max="16000" value="9600">60%</progress>
+                    Aqui você conhece os quatro projetos permanentes do instituto e escolhe como participar:
+                    doando seu tempo como voluntário ou contribuindo com uma de nossas campanhas.
                 </p>
-                <p><a href="cadastro.html">Quero doar para esta campanha</a></p>
-            </article>
-            <article>
-                <h3>Natal Solidário</h3>
-                <p>Cestas de Natal para as 190 famílias atendidas pela Cozinha Solidária.</p>
-                <p>
-                    <label for="meta-natal">Arrecadado: R$ 5.700 de R$ 19.000</label><br>
-                    <progress id="meta-natal" max="19000" value="5700">30%</progress>
-                </p>
-                <p><a href="cadastro.html">Quero doar para esta campanha</a></p>
-            </article>
-            <article>
-                <h3>Computador para Todos</h3>
-                <p>Troca de 5 computadores do laboratório do Jovem Conectado.</p>
-                <p>
-                    <label for="meta-computadores">Arrecadado: R$ 7.500 de R$ 10.000</label><br>
-                    <progress id="meta-computadores" max="10000" value="7500">75%</progress>
-                </p>
-                <p><a href="cadastro.html">Quero doar para esta campanha</a></p>
-            </article>
+
+                <!-- Sumário interno: atalhos para os três caminhos da página -->
+                <nav class="sumario" aria-label="Nesta página">
+                    <ul class="sumario__lista">
+                        <li><a class="sumario__link" href="#projetos">Projetos em andamento</a></li>
+                        <li><a class="sumario__link" href="#voluntariado">Como ser voluntário</a></li>
+                        <li><a class="sumario__link" href="#doacao">Campanhas de doação</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Projetos: 1 por linha no celular, 2 a partir de 768px e 4 a partir de 1200px -->
+        <section class="secao" id="projetos" aria-labelledby="titulo-projetos">
+            <div class="container">
+                <h2 id="titulo-projetos">Projetos em andamento</h2>
+
+                <div class="grid">
+                    <article class="cartao col-md-6 col-xl-3" id="reforco">
+                        <div class="cartao__corpo">
+                            <h3>Reforço Escolar Semente</h3>
+                            <figure class="cartao__midia">
+                                <picture>
+                                    <source type="image/webp" srcset="img/projeto-reforco.webp">
+                                    <img src="img/projeto-reforco.png" alt="Ilustração de um livro aberto, símbolo do projeto de reforço escolar" width="400" height="240" loading="lazy">
+                                </picture>
+                                <figcaption>Turmas pequenas, de até 12 crianças, com acompanhamento individual.</figcaption>
+                            </figure>
+                            <ul class="badges" aria-label="Categoria e status">
+                                <li class="badge badge--educacao">Educação</li>
+                                <li class="badge badge--sucesso">Vagas abertas</li>
+                            </ul>
+                            <p>Aulas de reforço em português e matemática para crianças do ensino fundamental, no contraturno escolar.</p>
+                            <dl class="ficha">
+                                <dt>Público</dt>
+                                <dd>Crianças de 7 a 14 anos</dd>
+                                <dt>Quando</dt>
+                                <dd>Segunda a quinta, das 14h às 17h</dd>
+                            </dl>
+                            <h4>Como ajudar</h4>
+                            <ul>
+                                <li><strong>Voluntário:</strong> dar aulas ou acompanhar a lição de casa.</li>
+                                <li><strong>Doação:</strong> material escolar e lanches para as turmas.</li>
+                            </ul>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--primario" href="cadastro.html">Quero ajudar este projeto</a>
+                        </div>
+                    </article>
+                    <article class="cartao col-md-6 col-xl-3" id="cozinha">
+                        <div class="cartao__corpo">
+                            <h3>Cozinha Solidária</h3>
+                            <figure class="cartao__midia">
+                                <picture>
+                                    <source type="image/webp" srcset="img/projeto-cozinha.webp">
+                                    <img src="img/projeto-cozinha.png" alt="Ilustração de uma panela com vapor, símbolo da Cozinha Solidária" width="400" height="240" loading="lazy">
+                                </picture>
+                                <figcaption>Refeições preparadas com alimentos doados e da horta comunitária.</figcaption>
+                            </figure>
+                            <ul class="badges" aria-label="Categoria e status">
+                                <li class="badge badge--alimentacao">Alimentação</li>
+                                <li class="badge badge--aviso">Últimas vagas</li>
+                            </ul>
+                            <p>Refeições gratuitas para famílias em situação de insegurança alimentar e distribuição mensal de cestas básicas.</p>
+                            <dl class="ficha">
+                                <dt>Público</dt>
+                                <dd>Famílias cadastradas no bairro</dd>
+                                <dt>Quando</dt>
+                                <dd>Terça, quinta e sábado, a partir das 11h</dd>
+                            </dl>
+                            <h4>Como ajudar</h4>
+                            <ul>
+                                <li><strong>Voluntário:</strong> cozinhar, servir ou montar as cestas.</li>
+                                <li><strong>Doação:</strong> alimentos não perecíveis e gás de cozinha.</li>
+                            </ul>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--primario" href="cadastro.html">Quero ajudar este projeto</a>
+                        </div>
+                    </article>
+                    <article class="cartao col-md-6 col-xl-3" id="jovem">
+                        <div class="cartao__corpo">
+                            <h3>Jovem Conectado</h3>
+                            <figure class="cartao__midia">
+                                <picture>
+                                    <source type="image/webp" srcset="img/projeto-jovem.webp">
+                                    <img src="img/projeto-jovem.png" alt="Ilustração de um notebook com código na tela, símbolo do projeto Jovem Conectado" width="400" height="240" loading="lazy">
+                                </picture>
+                                <figcaption>Laboratório com 15 computadores recondicionados.</figcaption>
+                            </figure>
+                            <ul class="badges" aria-label="Categoria e status">
+                                <li class="badge badge--tecnologia">Tecnologia</li>
+                                <li class="badge badge--sucesso">Vagas abertas</li>
+                            </ul>
+                            <p>Oficinas de informática básica, pacote de escritório e introdução à programação web para jovens em busca do primeiro emprego.</p>
+                            <dl class="ficha">
+                                <dt>Público</dt>
+                                <dd>Jovens de 15 a 24 anos</dd>
+                                <dt>Quando</dt>
+                                <dd>Sábados, das 8h às 12h</dd>
+                            </dl>
+                            <h4>Como ajudar</h4>
+                            <ul>
+                                <li><strong>Voluntário:</strong> ser instrutor ou mentor de carreira.</li>
+                                <li><strong>Doação:</strong> computadores usados e internet do laboratório.</li>
+                            </ul>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--primario" href="cadastro.html">Quero ajudar este projeto</a>
+                        </div>
+                    </article>
+                    <article class="cartao col-md-6 col-xl-3" id="horta">
+                        <div class="cartao__corpo">
+                            <h3>Horta Comunitária Viva</h3>
+                            <figure class="cartao__midia">
+                                <picture>
+                                    <source type="image/webp" srcset="img/projeto-horta.webp">
+                                    <img src="img/projeto-horta.png" alt="Ilustração de uma horta com mudas, símbolo da Horta Comunitária Viva" width="400" height="240" loading="lazy">
+                                </picture>
+                                <figcaption>Canteiros cuidados por famílias e voluntários.</figcaption>
+                            </figure>
+                            <ul class="badges" aria-label="Categoria e status">
+                                <li class="badge badge--ambiente">Meio ambiente</li>
+                                <li class="badge badge--neutro">Nova turma em breve</li>
+                            </ul>
+                            <p>Cultivo de hortaliças sem agrotóxicos, com oficinas de educação ambiental. Parte da colheita abastece a Cozinha Solidária.</p>
+                            <dl class="ficha">
+                                <dt>Público</dt>
+                                <dd>Famílias e escolas da região</dd>
+                                <dt>Quando</dt>
+                                <dd>Mutirões aos domingos, das 7h às 10h</dd>
+                            </dl>
+                            <h4>Como ajudar</h4>
+                            <ul>
+                                <li><strong>Voluntário:</strong> participar dos mutirões de plantio e colheita.</li>
+                                <li><strong>Doação:</strong> mudas, adubo e ferramentas.</li>
+                            </ul>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--primario" href="cadastro.html">Quero ajudar este projeto</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </section>
 
-        <!-- Dados tabulares: aqui a tabela é o elemento certo -->
-        <section aria-labelledby="titulo-resultados">
-            <h2 id="titulo-resultados">Resultados e transparência</h2>
-            <table>
-                <caption>Pessoas atendidas por projeto em 2024 e 2025</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Projeto</th>
-                        <th scope="col">2024</th>
-                        <th scope="col">2025</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Reforço Escolar Semente</th>
-                        <td>280</td>
-                        <td>320</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Cozinha Solidária (famílias)</th>
-                        <td>150</td>
-                        <td>190</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Jovem Conectado</th>
-                        <td>110</td>
-                        <td>145</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Horta Comunitária Viva (famílias)</th>
-                        <td>40</td>
-                        <td>62</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <!-- A partir de 992px: conteúdo em 8 colunas e o aside de Parcerias em 4 -->
+        <div class="secao secao--alt">
+            <div class="container grid">
+                <div class="col-lg-8 fluxo">
+                    <!-- Caminho 1: voluntariado -->
+                    <section id="voluntariado" aria-labelledby="titulo-voluntariado">
+                        <h2 id="titulo-voluntariado">Como ser voluntário</h2>
+                        <p>O voluntariado começa com poucos passos:</p>
+                        <ol class="passos">
+                            <li><span>Preencha o <a href="cadastro.html">formulário de cadastro</a>.</span></li>
+                            <li><span>Nossa equipe entra em contato para uma conversa de boas-vindas.</span></li>
+                            <li><span>Participe da formação inicial de 4 horas, aos sábados.</span></li>
+                            <li><span>Comece no projeto e no horário que você escolheu.</span></li>
+                        </ol>
 
-        <aside aria-labelledby="titulo-parceiros">
-            <h2 id="titulo-parceiros">Quer propor uma parceria?</h2>
-            <p>Empresas, escolas e igrejas podem apoiar um projeto específico. Escreva para <a href="mailto:parcerias@maosquesemeiam.org.br">parcerias@maosquesemeiam.org.br</a>.</p>
-        </aside>
+                        <h3>Requisitos</h3>
+                        <ul>
+                            <li>Ter 16 anos ou mais (menores de 18 com autorização dos responsáveis).</li>
+                            <li>Disponibilidade mínima de 2 horas por semana.</li>
+                            <li>Compromisso com as regras de proteção de crianças e adolescentes.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Caminho 2: doação -->
+                    <section id="doacao" aria-labelledby="titulo-doacao">
+                        <h2 id="titulo-doacao">Campanhas de doação</h2>
+                        <p>Doações podem ser únicas ou mensais. Estas são as campanhas ativas e quanto já foi arrecadado:</p>
+
+                        <div class="grid">
+                            <article class="cartao col-md-6">
+                                <div class="cartao__corpo">
+                                    <h3>Material escolar 2027</h3>
+                                    <p>Kits com cadernos, lápis e mochila para as 320 crianças do reforço escolar no início do ano letivo.</p>
+                                    <div class="campanha__meta">
+                                        <label for="meta-escolar">Arrecadado: R$ 9.600 de R$ 16.000</label>
+                                        <span class="campanha__percentual" aria-hidden="true">60%</span>
+                                    </div>
+                                    <progress class="campanha__barra" id="meta-escolar" max="16000" value="9600">60%</progress>
+                                </div>
+                                <div class="cartao__acoes">
+                                    <a class="botao botao--doar" href="cadastro.html">Quero doar para esta campanha</a>
+                                </div>
+                            </article>
+                            <article class="cartao col-md-6">
+                                <div class="cartao__corpo">
+                                    <h3>Natal Solidário</h3>
+                                    <p>Cestas de Natal para as 190 famílias atendidas pela Cozinha Solidária.</p>
+                                    <div class="campanha__meta">
+                                        <label for="meta-natal">Arrecadado: R$ 5.700 de R$ 19.000</label>
+                                        <span class="campanha__percentual" aria-hidden="true">30%</span>
+                                    </div>
+                                    <progress class="campanha__barra" id="meta-natal" max="19000" value="5700">30%</progress>
+                                </div>
+                                <div class="cartao__acoes">
+                                    <a class="botao botao--doar" href="cadastro.html">Quero doar para esta campanha</a>
+                                </div>
+                            </article>
+                            <article class="cartao col-md-6">
+                                <div class="cartao__corpo">
+                                    <h3>Computador para Todos</h3>
+                                    <p>Troca de 5 computadores do laboratório do Jovem Conectado.</p>
+                                    <div class="campanha__meta">
+                                        <label for="meta-computadores">Arrecadado: R$ 7.500 de R$ 10.000</label>
+                                        <span class="campanha__percentual" aria-hidden="true">75%</span>
+                                    </div>
+                                    <progress class="campanha__barra" id="meta-computadores" max="10000" value="7500">75%</progress>
+                                </div>
+                                <div class="cartao__acoes">
+                                    <a class="botao botao--doar" href="cadastro.html">Quero doar para esta campanha</a>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Dados tabulares: aqui a tabela é o elemento certo -->
+                    <section aria-labelledby="titulo-resultados">
+                        <h2 id="titulo-resultados">Resultados e transparência</h2>
+                        <div class="tabela-rolagem">
+                            <table class="tabela">
+                                <caption>Pessoas atendidas por projeto em 2024 e 2025</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Projeto</th>
+                                        <th scope="col">2024</th>
+                                        <th scope="col">2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Reforço Escolar Semente</th>
+                                        <td>280</td>
+                                        <td>320</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cozinha Solidária (famílias)</th>
+                                        <td>150</td>
+                                        <td>190</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jovem Conectado</th>
+                                        <td>110</td>
+                                        <td>145</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Horta Comunitária Viva (famílias)</th>
+                                        <td>40</td>
+                                        <td>62</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="cartao col-lg-4 lateral" aria-labelledby="titulo-parceiros">
+                    <div class="cartao__corpo">
+                        <h2 id="titulo-parceiros">Quer propor uma parceria?</h2>
+                        <p>Empresas, escolas e igrejas podem apoiar um projeto específico. Escreva para <a class="botao botao--contorno" href="mailto:parcerias@maosquesemeiam.org.br">parcerias@maosquesemeiam.org.br</a>.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <address>
-            <strong>Instituto Mãos que Semeiam</strong><br>
-            Rua das Sementes, 150, Bairro Esperança, Manaus - AM, CEP 69000-000<br>
-            Telefone: <a href="tel:+5592900000000">(92) 90000-0000</a><br>
-            E-mail: <a href="mailto:contato@maosquesemeiam.org.br">contato@maosquesemeiam.org.br</a>
-        </address>
-        <p><small>&copy; 2026 Instituto Mãos que Semeiam. Organização fictícia criada para a Experiência Prática I da disciplina Desenvolvimento Front-End para Web.</small></p>
+    <!-- Área onde os toasts aparecem (aria-live: o leitor de tela anuncia sem tirar o foco) -->
+    <div class="toast-area" role="status" aria-live="polite"></div>
+
+    <footer class="rodape">
+        <div class="container">
+            <div class="grid">
+                <div class="col-md-4">
+                    <address>
+                        <strong>Instituto Mãos que Semeiam</strong><br>
+                        Rua das Sementes, 150, Bairro Esperança, Manaus - AM, CEP 69000-000<br>
+                        Telefone: <a href="tel:+5592900000000">(92) 90000-0000</a><br>
+                        E-mail: <a href="mailto:contato@maosquesemeiam.org.br">contato@maosquesemeiam.org.br</a>
+                    </address>
+                </div>
+                <nav class="col-md-4" aria-label="Rodapé">
+                    <p class="rodape__titulo">Páginas</p>
+                    <ul class="rodape__lista">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+                        <li><a href="cadastro.html">Seja voluntário ou doador</a></li>
+                    </ul>
+                </nav>
+                <div class="col-md-4">
+                    <p class="rodape__titulo">Transparência</p>
+                    <ul class="rodape__lista">
+                        <li><a href="design-system.html">Design System do site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rodape__base">
+                <small>&copy; 2026 Instituto Mãos que Semeiam. Organização fictícia criada para as Experiências Práticas da disciplina Desenvolvimento Front-End para Web.</small>
+            </div>
+        </div>
     </footer>
+
+    <script src="js/menu.js"></script>
+    <script src="js/feedback.js"></script>
 </body>
 </html>

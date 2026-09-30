@@ -170,6 +170,9 @@
 }
 
 /* ---------- Aside lateral: acompanha a rolagem a partir de 992px ---------- */
+.grid > .lateral {
+    height: auto;   /* não estica até o fim da coluna (o .cartao usa height: 100%) */
+}
 @media (min-width: 992px) {
     .lateral {
         position: sticky;
