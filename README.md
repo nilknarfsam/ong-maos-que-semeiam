@@ -72,11 +72,11 @@ O site precisa apresentar a organização, divulgar os projetos, mostrar a prest
 | Entrega | Tema | Situação | Versão |
 |---|---|---|---|
 | EP I | Fundamentos e estruturação: HTML5 semântico, formulário e diretórios | ✅ Entregue | tag `ep1` |
-| EP II | Design System, CSS3, Grid, Flexbox e componentes interativos | 🔄 Em andamento | — |
+| EP II | Design System, CSS3, Grid, Flexbox e componentes interativos | ✅ Entregue | tag `ep2` |
 | EP III | (aguardando enunciado) | — | — |
 | EP IV | (aguardando enunciado) | — | — |
 
-**Estado atual da EP II:** o Design System, o layout e os componentes estão prontos e documentados na página `design-system.html`. A próxima etapa é aplicar essas classes em `index.html`, `projetos.html` e `cadastro.html`, que ainda estão com a estrutura da EP I, sem estilo.
+Cada entrega tem uma tag no Git. Para ver o site sem CSS (versão da EP I): `git checkout ep1`. Para voltar à versão atual: `git checkout main`.
 
 ## 4. Estrutura de pastas
 
@@ -97,6 +97,7 @@ projeto-ong/
 ├── js/
 │   ├── mascaras.js       → (EP I) formata CPF, telefone e CEP durante a digitação
 │   ├── menu.js           → (EP II) abre e fecha o menu hambúrguer, fecha com Esc
+│   ├── cadastro.js       → (EP II) resumo de erros, modal de confirmação e toast do cadastro
 │   └── feedback.js       → (EP II) modal, toast e alertas que podem ser fechados
 └── img/                  → logotipo (SVG) e ilustrações em WebP + JPG/PNG
 ```
@@ -181,6 +182,7 @@ As classes seguem a convenção **BEM** (`.bloco__elemento--modificador`).
 | Alertas | `.alerta--info`, `--sucesso`, `--aviso`, `--erro` | Ícone, título e borda lateral. O fundo claro é gerado com `color-mix()` a partir do token, sem criar cor nova. `role="alert"` nos erros. |
 | Formulário | `.campo`, `.campo__entrada`, `.campo__erro`, `.opcoes` | Validação visual com `:user-invalid`/`:user-valid`, que só age depois da interação, e *fallback* `:not(:placeholder-shown):invalid`. Erro com borda, ícone e mensagem; sucesso com borda e ícone de confirmação. |
 | Modal | `.modal` (elemento `<dialog>`) | `showModal()` nativo: prende o foco, fecha com Esc e usa `::backdrop` translúcido. |
+| Estrutura das páginas | `.impacto__item`, `.sumario`, `.ficha`, `.passos`, `.campanha__meta`, `.campanha__barra`, `.tabela`, `.grupo`, `.grupo--interno`, `.faq`, `.lateral` | Números de impacto, sumário em pílulas, ficha dos projetos, passos numerados com contador CSS, meta e barra de progresso das campanhas, tabela zebrada com rolagem, grupos do formulário, perguntas frequentes e aside fixo na rolagem a partir de 992px. |
 | Toast | `.toast-area`, `.toast` | Notificação não obstrutiva com `aria-live="polite"`, que some em 5 s. A função `mostrarToast(mensagem, tipo)` fica disponível para integração com o back-end. |
 
 ## 7. Acessibilidade
@@ -197,12 +199,13 @@ O projeto segue as recomendações da **WCAG 2.1, nível AA**:
 
 | Verificação | Ferramenta | Resultado |
 |---|---|---|
-| HTML das 3 páginas da EP I | W3C Nu Html Checker | 0 erros e 0 avisos |
-| HTML de `design-system.html` | W3C Nu Html Checker (`vnu.jar`) | 0 erros |
-| CSS dos 6 arquivos | Validador de CSS do `vnu.jar` | 0 erros |
+| HTML de `index.html`, `projetos.html`, `cadastro.html` e `design-system.html` (versão `ep2`) | W3C Nu Html Checker (online e `vnu.jar`) | 0 erros e 0 avisos nas 4 páginas |
+| CSS dos 6 arquivos | W3C Nu Html Checker (online e `vnu.jar --css`) | 0 erros |
+| Cores fora do Design System | busca por `#hex` fora de `variaveis.css` | nenhuma (só o ícone SVG em *data URI*) |
+| Âncoras do submenu | script que confere os `id` de `projetos.html` | todas existem |
 | Contraste de cores | Script com a fórmula da WCAG 2.1 | todas as combinações de texto ≥ 4,5:1 |
-| Responsividade | Chromium (Playwright) em 390px e 1280px | sem rolagem horizontal no celular |
-| Formulário | testes manuais com entradas inválidas e incompletas | envio bloqueado e mensagens exibidas |
+| Responsividade | navegador Chromium em 390px e 1280px | sem rolagem horizontal no celular nas 4 páginas |
+| Formulário | envio vazio e envio completo no navegador | envio vazio: alerta com 11 campos a corrigir e foco no primeiro; envio completo: modal com o primeiro nome e toast ao fechar |
 
 ## 9. Como executar
 
@@ -228,7 +231,7 @@ Uma ferramenta de IA generativa (Claude, da Anthropic) foi usada como apoio no p
 | Versão | Data | Descrição |
 |---|---|---|
 | `ep1` | 28/09/2026 | Estrutura HTML5 semântica, 3 páginas, formulário com validação nativa e máscaras, imagens otimizadas |
-| EP II (em andamento) | 29/09/2026 | Design System em variáveis CSS, arquitetura em 6 arquivos CSS, Grid de 12 colunas, menu responsivo, componentes de feedback e página `design-system.html` |
+| `ep2` | 29/09/2026 | Design System em variáveis CSS, arquitetura em 6 arquivos CSS, Grid de 12 colunas com 5 *breakpoints*, menu responsivo com *dropdown*, componentes de *feedback*, página `design-system.html` e o CSS aplicado nas 3 páginas (validação visual e modal no cadastro) |
 
 ## 12. Referências
 
