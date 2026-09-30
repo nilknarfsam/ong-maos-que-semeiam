@@ -78,7 +78,7 @@ O site precisa apresentar a organização, divulgar os projetos, mostrar a prest
 | EP I | Fundamentos e estruturação: HTML5 semântico, formulário e diretórios | ✅ Entregue | tag `ep1` |
 | EP II | Design System, CSS3, Grid, Flexbox e componentes interativos | ✅ Entregue | tag `ep2` |
 | EP III | SPA em JavaScript: roteamento por hash, templates, eventos, validação, localStorage, Day.js e ES Modules | ✅ Entregue | tag `ep3` |
-| EP IV | (aguardando enunciado) | — | — |
+| EP IV | GitFlow, documentação, acessibilidade, otimização e deploy | Implementada; validação e publicação registradas na seção 13 | — |
 
 Cada entrega tem uma tag no Git. Para ver o site sem CSS (versão da EP I): `git checkout ep1`. Para voltar à versão atual: `git checkout main`.
 
@@ -232,8 +232,8 @@ As classes seguem a convenção **BEM** (`.bloco__elemento--modificador`).
 
 ## 7. Acessibilidade
 
-O projeto segue as recomendações da **WCAG 2.1, nível AA**:
-- **Contraste:** todas as combinações de texto têm contraste de pelo menos 4,5:1, medido com a fórmula de luminância relativa da WCAG.
+O projeto usa **WCAG 2.1, nível AA** como referência. Os testes automatizados da EP IV não substituem uma auditoria completa nem testes com pessoas e leitores de tela:
+- **Contraste:** pares de tokens medidos por fórmula WCAG; auditoria automatizada de telas e temas com axe. Ver escopo e limites na seção 13.
 - **A cor nunca é o único sinal:** erros, alertas e badges trazem sempre texto e, quando há espaço, ícone.
 - **Teclado:** link "Pular para o conteúdo", foco levado ao título de cada tela aberta pela SPA, foco visível com `:focus-visible`, dropdown acessível por `:focus-within`, Esc para fechar o menu e o modal.
 - **Leitores de tela:** `aria-current` no menu, `aria-expanded`/`aria-controls` no botão do hambúrguer, `aria-describedby` ligando dicas e erros aos campos, `aria-live` nos toasts e `role="alert"` nos erros.
@@ -256,10 +256,29 @@ O projeto segue as recomendações da **WCAG 2.1, nível AA**:
 
 ## 9. Como executar
 
-Não há etapa de *build*, mas desde a EP III o site **precisa de um servidor local**: o `fetch` das views e os ES Modules não funcionam abrindo o arquivo direto (`file://`).
-1. clone o repositório: `git clone https://github.com/nilknarfsam/ong-maos-que-semeiam.git`;
-2. rode um servidor na pasta, por exemplo a extensão **Live Server** do VS Code, `npx serve` ou `python -m http.server`;
-3. abra o endereço indicado (ex.: `http://localhost:8080/`), ou acesse o [site publicado](https://nilknarfsam.github.io/ong-maos-que-semeiam/).
+Desde a EP IV há build de produção separado, mantendo os fontes existentes. Requisitos: **Node.js 22 ou superior** (CI usa 24), npm e **Java 21** para o Nu Html Checker.
+
+```sh
+git clone https://github.com/nilknarfsam/ong-maos-que-semeiam.git
+cd ong-maos-que-semeiam
+npm ci
+npx playwright install chromium
+npm run dev
+```
+
+Abra `http://127.0.0.1:4173/ong-maos-que-semeiam/`. Não use `file://`: as views dependem de HTTP/fetch. Encerre o servidor antes de iniciar outro na mesma porta.
+
+| Comando | Resultado |
+|---|---|
+| `npm run dev` | Serve os fontes na porta 4173 |
+| `npm run build` | Minifica HTML/CSS/JS em `dist/` e gera `reports/sizes.json` |
+| `npm run preview` | Serve exclusivamente `dist/` na porta 4173 |
+| `npm test` | Playwright inicia o preview e testa a produção previamente gerada |
+| `npm run metrics` | Mede pares de contraste e imagens em `reports/metricas.json` |
+| `npm run validate:html` | Nu valida documentos de dist e views renderizadas por `npm test` |
+| `npm run check` | Build, métricas, testes e Nu em sequência |
+
+No Linux, use `npx playwright install --with-deps chromium`. No PowerShell, `npm.cmd` e `npx.cmd` evitam restrições à execução de scripts. É possível usar Chrome instalado com `$env:PLAYWRIGHT_CHANNEL='chrome'` antes de `npm run check`. Em redes que usam certificados do Windows, Node 24 aceita `$env:NODE_USE_SYSTEM_CA='1'`; não desative TLS.
 
 A fonte Nunito vem do Google Fonts. Sem internet, os títulos usam a fonte do sistema.
 
@@ -273,6 +292,8 @@ Cada Experiência Prática seguiu o mesmo ciclo:
 5. **Publicação:** commit, tag por entrega e GitHub Pages.
 
 Uma ferramenta de IA generativa (Claude, da Anthropic) foi usada como apoio no planejamento, na revisão e na geração de código. Todo o conteúdo foi revisado, testado e validado pelo aluno, que é o responsável pelas decisões do projeto.
+
+Em 29/09/2026, a continuidade da EP IV passou a contar também com o Codex, da OpenAI, para análise, implementação do alto contraste e build, testes automatizados, documentação e preparação da entrega da EP IV. As verificações executadas pelo agente são descritas separadamente da revisão humana, que permanece sob responsabilidade do aluno. O histórico das etapas anteriores permanece preservado; o aluno continua responsável por compreender e validar as decisões e a entrega final.
 
 ## 11. Histórico de versões
 
@@ -295,3 +316,41 @@ Uma ferramenta de IA generativa (Claude, da Anthropic) foi usada como apoio no p
 ---
 
 > **Aviso:** o Instituto Mãos que Semeiam é uma organização **fictícia**, criada exclusivamente para fins acadêmicos. Nomes, endereços, números e campanhas são ilustrativos.
+
+## 13. EP IV: acessibilidade, produção e entrega
+
+### Implementação e limites
+
+- Alto contraste nas duas entradas (SPA e guia) por `data-contraste` e tokens do Design System. O botão nativo **Alto contraste** expõe `aria-pressed`, funciona com Enter/Espaço e salva `ong:contraste` usando a camada de armazenamento. Bloqueio do localStorage não impede a troca na sessão.
+- Mantidos HTML semântico, rótulos, fieldsets, regiões de status, mensagens textuais e `aria-invalid`/`aria-describedby`. `main` é focável pelo atalho; as rotas levam foco ao título/seção. Escape dispensa o submenu desktop e devolve o foco; seta para baixo reabre. Removida a transição de `visibility` que impedia foco imediato.
+- Bordas funcionais usam `--cor-controle`; placeholders usam `--cor-texto-suave`. A preferência de movimento reduzido também desliga rolagem suave. O modo alto exige ajustes de botões de doação, badges, rodapé e toasts para manter os pares corretos.
+- O formulário continua sendo uma demonstração local, sem backend. Os dados ficam neste navegador; não há envio de cadastro a um servidor.
+- Leitores NVDA/VoiceOver e testes por participantes humanos **não foram executados** nesta etapa. Os testes de teclado são automatizados. A inspeção visual foi feita pelo Codex em capturas reais da produção. Não se declara certificação integral WCAG.
+
+### Build e medições
+
+`esbuild` minifica CSS e módulos JS sem empacotar nem alterar caminhos/importações; `html-minifier-terser` minifica documentos e fragmentos. O vendor Day.js já minificado é copiado sem alteração. `scripts/build.mjs` mantém a árvore em `dist/`, incluindo views carregadas por fetch, imagens e redirecionamentos. Os fontes legíveis permanecem nas pastas originais; dist, relatórios e dependências não entram no Git.
+
+Medição local da EP IV (antes/depois, bytes): HTML 73.785 → 49.253 (33,25%); CSS 46.590 → 28.212 (39,45%); JS incluindo vendor 46.379 → 29.675 (36,02%).
+
+O relatório compara os mesmos arquivos, em bytes UTF-8, antes/depois, sem gzip/Brotli. As medições dependem também das terminações de linha da cópia local. A redução não é uma medição de tempo de carregamento. `reports/sizes.json` contém cada arquivo, e `reports/metricas.json` contém contraste e pares de imagens.
+
+As imagens das EPs anteriores já estavam otimizadas: WebP da principal economiza 49,28% (800px) e 54,76% (1200px) frente aos JPEGs equivalentes. Os cartões economizam 8,80% a 15,50% frente aos PNGs. Foram preservadas; `sizes` da principal foi ajustado às larguras reais do Grid. SVG do logo, alternativas JPEG/PNG, dimensões explícitas e lazy loading dos cartões continuam funcionando. Não foi medida melhoria global em segundos nem executado benchmark de rede controlado.
+
+### Verificações reproduzíveis
+
+Resultado local: **17 testes aprovados**, zero violações axe nos cenários auditados e zero erros no Nu. Chrome instalado no Windows, via Playwright.
+
+A suíte em `tests/producao.spec.js` verifica as três rotas em 320, 390, 768 e 1280px, nos dois temas, sem overflow horizontal. Executa axe WCAG 2 A/AA e 2.1 AA, verifica imagens, erros JS, teclado, menu, foco, cadastro válido/inválido, modal, rascunho, persistência/limpeza, Day.js e fallback, falhas HTTP/rede, armazenamento bloqueado/corrompido, redirecionamentos e guia. Casos de erro e modal também passam por axe. O Nu valida a casca, redirecionamentos, guia e três documentos completos renderizados; fragmentos isolados não são tratados como páginas completas.
+
+### Versionamento e publicação
+
+- `main`: versão estável; `develop`: integração; `feature/ep4-acessibilidade-producao`: implementação; `release/1.0.0`: preparação da entrega. `hotfix/` é reservado a urgências reais, sem branch artificial.
+- Novos commits seguem Conventional Commits com descrição em português; merges preservam a história. Não houve force push, rebase ou remoção de branches/tags. As tags ep1/ep2/ep3 permanecem intactas.
+- `1.0.0` é a primeira versão semântica estável consolidada; as etapas anteriores usavam tags acadêmicas, não SemVer. Futuramente: PATCH para correções compatíveis, MINOR para funcionalidades compatíveis e MAJOR para rupturas. `v1.0.0` e `ep4` identificam a mesma entrega.
+- [Issue #1](https://github.com/nilknarfsam/ong-maos-que-semeiam/issues/1) e [milestone EP IV](https://github.com/nilknarfsam/ong-maos-que-semeiam/milestone/1) registram o trabalho individual apoiado pelo Codex. PRs documentam integração e testes; não representam revisão por terceiros.
+- Configuração inicial consultada pela API: Pages publicava `main:/` no modo legacy, com HTTPS. A publicação da EP IV usa GitHub Actions e o mesmo endereço público.
+- `.github/workflows/pages.yml`: em push e PR, instala dependências pelo lockfile, prepara Chromium/Java, executa `npm run check` e guarda evidências. Só a `main`, após sucesso, publica `dist/` com `upload-pages-artifact` e `deploy-pages`. O job de deploy tem apenas `pages: write` e `id-token: write`, com concorrência controlada. Nenhum serviço pago foi contratado.
+- O site expõe `version.json` com a versão de produção. Resultados efetivos, links dos runs e pacote congelado ficam no diário e na entrega acadêmica, fora deste repositório.
+
+Referências técnicas da EP IV: [API do esbuild](https://esbuild.github.io/api/) e [workflows personalizados do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
