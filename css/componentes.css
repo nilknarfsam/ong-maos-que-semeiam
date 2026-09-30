@@ -500,11 +500,24 @@
     font-size: 0.75rem;
 }
 
-/* Fallback para navegadores sem :user-invalid */
-.campo__entrada:not(:placeholder-shown):invalid {
+/* Fallback para navegadores sem :user-invalid
+   (dentro do @supports para não marcar como erro, ao abrir a página,
+   os campos obrigatórios vazios que não têm placeholder) */
+@supports not selector(:user-invalid) {
+    .campo__entrada:not(:placeholder-shown):invalid {
+        border-color: var(--cor-erro);
+    }
+    .campo__entrada:not(:placeholder-shown):invalid ~ .campo__erro {
+        display: flex;
+    }
+}
+
+/* Depois de uma tentativa de envio (classe colocada pelo js/cadastro.js),
+   todos os campos inválidos mostram o erro, mesmo os que não foram tocados */
+.formulario--enviado .campo__entrada:invalid {
     border-color: var(--cor-erro);
 }
-.campo__entrada:not(:placeholder-shown):invalid ~ .campo__erro {
+.formulario--enviado .campo__entrada:invalid ~ .campo__erro {
     display: flex;
 }
 
@@ -547,6 +560,44 @@
     accent-color: var(--cor-primaria);
 }
 .opcao:has(:checked) {
+    font-weight: var(--peso-forte);
+}
+
+/* Campos dentro do grid: o espaço entre eles vem do gap */
+.grid > .campo {
+    margin-bottom: 0;
+}
+
+/* Grupos do formulário (fieldset) */
+.grupo {
+    min-width: 0;   /* o fieldset não estoura a coluna no celular */
+    margin: 0 0 var(--esp-5);
+    padding: var(--esp-4);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+}
+.grupo > legend {
+    padding-inline: var(--esp-2);
+    font-family: var(--fonte-titulo);
+    font-size: var(--fonte-md);
+    font-weight: var(--peso-titulo);
+    color: var(--cor-primaria-escura);
+}
+.grupo > legend abbr,
+.opcao abbr {
+    color: var(--cor-erro);
+    text-decoration: none;
+}
+/* Fieldset dentro de outro (Projetos de interesse, Frequência): sem borda */
+.grupo--interno {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.grupo--interno > legend {
+    margin-bottom: var(--esp-2);
+    padding: 0;
     font-weight: var(--peso-forte);
 }
 
@@ -687,6 +738,253 @@
 }
 @keyframes toast-saida {
     to { opacity: 0; transform: translateY(1rem); }
+}
+
+/* ==========================================================================
+   CARTÃO DE PROJETO: a figura vem depois do h3 no HTML, mas aparece
+   no topo do cartão (order: -1), ocupando a largura toda.
+   ========================================================================== */
+.cartao__corpo > .cartao__midia {
+    order: -1;
+    aspect-ratio: auto;
+    margin: calc(-1 * var(--esp-4)) calc(-1 * var(--esp-4)) var(--esp-2);
+}
+.cartao__corpo > .cartao__midia img {
+    height: auto;
+    aspect-ratio: 5 / 3;
+}
+.cartao__midia figcaption {
+    padding: var(--esp-2) var(--esp-4) 0;
+}
+.cartao__corpo ul:not(.badges) {
+    padding-left: var(--esp-4);
+}
+
+/* ==========================================================================
+   NÚMEROS DE IMPACTO
+   ========================================================================== */
+.impacto {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.impacto__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--esp-1);
+    height: 100%;
+    padding: var(--esp-4) var(--esp-3);
+    text-align: center;
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+}
+.impacto__numero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--cor-primaria-escura);
+}
+.impacto__numero data {
+    font-family: var(--fonte-titulo);
+    font-size: var(--fonte-xxl);
+    font-weight: var(--peso-titulo);
+    line-height: var(--altura-linha-titulo);
+    color: var(--cor-primaria);
+}
+
+/* ==========================================================================
+   SUMÁRIO INTERNO (atalhos "Nesta página")
+   ========================================================================== */
+.sumario__lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sumario__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--area-toque);
+    padding: var(--esp-2) var(--esp-3);
+    border: 2px solid var(--cor-primaria);
+    border-radius: var(--raio-pilula);
+    background: var(--cor-fundo);
+    font-weight: var(--peso-forte);
+    text-decoration: none;
+    transition: background-color var(--transicao), color var(--transicao);
+}
+.sumario__link:hover {
+    background: var(--cor-primaria);
+    color: var(--cor-fundo);
+}
+
+/* ==========================================================================
+   FICHA (lista de definição dentro dos cartões: Público, Quando)
+   ========================================================================== */
+.ficha dt {
+    font-size: var(--fonte-xs);
+    font-weight: var(--peso-forte);
+    color: var(--cor-primaria-escura);
+}
+.ficha dd {
+    margin: 0 0 var(--esp-2);
+}
+
+/* ==========================================================================
+   PASSOS NUMERADOS (contador CSS)
+   ========================================================================== */
+.passos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-3);
+    padding: 0;
+    list-style: none;
+    counter-reset: passo;
+}
+.passos > li {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-3);
+    counter-increment: passo;
+}
+.passos > li::before {
+    content: counter(passo);
+    display: grid;
+    place-items: center;
+    width: var(--area-toque);
+    height: var(--area-toque);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--cor-primaria);
+    color: var(--cor-fundo);
+    font-family: var(--fonte-titulo);
+    font-weight: var(--peso-titulo);
+}
+
+/* ==========================================================================
+   CAMPANHAS DE DOAÇÃO: meta e barra de progresso
+   ========================================================================== */
+.campanha__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+    font-weight: var(--peso-forte);
+}
+.campanha__percentual {
+    color: var(--cor-primaria);
+}
+.campanha__barra {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 0.75rem;
+    border: 0;
+    border-radius: var(--raio-pilula);
+    overflow: hidden;
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria);
+}
+.campanha__barra::-webkit-progress-bar {
+    background: var(--cor-primaria-clara);
+    border-radius: var(--raio-pilula);
+}
+.campanha__barra::-webkit-progress-value {
+    background: var(--cor-primaria);
+    border-radius: var(--raio-pilula);
+}
+.campanha__barra::-moz-progress-bar {
+    background: var(--cor-primaria);
+    border-radius: var(--raio-pilula);
+}
+
+/* ==========================================================================
+   TABELA
+   ========================================================================== */
+.tabela-rolagem {
+    overflow-x: auto;
+}
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tabela caption {
+    margin-bottom: var(--esp-2);
+    text-align: left;
+    font-weight: var(--peso-forte);
+    color: var(--cor-texto-suave);
+}
+.tabela th,
+.tabela td {
+    padding: var(--esp-2) var(--esp-3);
+    border-bottom: 1px solid var(--cor-borda);
+    text-align: left;
+}
+.tabela thead th {
+    background: var(--cor-primaria-clara);
+    color: var(--cor-primaria-escura);
+}
+.tabela tbody tr:nth-child(even) {
+    background: var(--cor-fundo-alt);
+}
+.tabela td {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   PERGUNTAS FREQUENTES (details/summary)
+   ========================================================================== */
+.faq {
+    margin-bottom: var(--esp-2);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    background: var(--cor-fundo);
+}
+.faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--esp-3);
+    min-height: var(--area-toque);
+    padding: var(--esp-2) var(--esp-3);
+    font-weight: var(--peso-forte);
+    cursor: pointer;
+    list-style: none;
+    border-radius: var(--raio-borda);
+}
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+.faq summary::after {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    flex-shrink: 0;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-25%) rotate(45deg);
+    transition: transform var(--transicao);
+}
+.faq[open] summary::after {
+    transform: translateY(25%) rotate(-135deg);
+}
+.faq summary:hover {
+    color: var(--cor-primaria);
+}
+.faq summary:focus-visible {
+    outline: 3px solid var(--cor-secundaria-escura);
+    outline-offset: 3px;
+}
+.faq p {
+    margin: 0;
+    padding: 0 var(--esp-3) var(--esp-3);
 }
 
 /* ==========================================================================

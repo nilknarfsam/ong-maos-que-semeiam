@@ -134,3 +134,67 @@
         align-items: center;
     }
 }
+
+/* ---------- Apresentação da página inicial ----------
+   Texto em 6 colunas e figura em 6, sem mudar a ordem do HTML
+   (h1, figura, parágrafos): a figura é posicionada pelo Grid. */
+.apresentacao {
+    row-gap: 0;
+    align-content: center;
+}
+@media (min-width: 992px) {
+    .apresentacao > * {
+        grid-column: 1 / span 6;
+    }
+    .apresentacao > figure {
+        grid-column: 7 / span 6;
+        grid-row: 1 / span 4;
+        align-self: center;
+        margin: 0;
+    }
+}
+.apresentacao figure img {
+    width: 100%;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-cartao);
+}
+.apresentacao figcaption {
+    margin-top: var(--esp-2);
+}
+
+/* ---------- Seções empilhadas dentro da coluna de conteúdo ---------- */
+.fluxo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-6);
+}
+
+/* ---------- Aside lateral: acompanha a rolagem a partir de 992px ---------- */
+@media (min-width: 992px) {
+    .lateral {
+        position: sticky;
+        top: calc(var(--esp-7) + var(--esp-4));   /* abaixo do cabeçalho fixo */
+        align-self: start;
+    }
+}
+
+/* ---------- Rodapé em 3 blocos ---------- */
+.rodape__titulo {
+    margin: 0 0 var(--esp-2);
+    font-family: var(--fonte-titulo);
+    font-weight: var(--peso-titulo);
+    font-size: var(--fonte-md);
+}
+.rodape__lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.rodape__lista a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--area-toque);
+}
+.rodape a[aria-current="page"] {
+    font-weight: var(--peso-forte);
+}

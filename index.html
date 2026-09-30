@@ -6,132 +6,231 @@
     <meta name="description" content="Instituto Mãos que Semeiam: ONG de Manaus que oferece reforço escolar, alimentação solidária, inclusão digital e hortas comunitárias. Seja voluntário ou doador.">
     <title>Instituto Mãos que Semeiam | Início</title>
     <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;display=swap">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/utilitarios.css">
 </head>
 <body>
     <!-- Link de atalho: permite que quem navega pelo teclado ou leitor de tela pule o menu -->
-    <a href="#conteudo">Pular para o conteúdo principal</a>
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo principal</a>
 
     <!-- ===== TOPO: identidade da ONG + menu principal ===== -->
-    <header>
-        <a href="index.html">
-            <img src="img/logo.svg" alt="Instituto Mãos que Semeiam, página inicial" width="80" height="80">
-        </a>
-        <p>Instituto Mãos que Semeiam</p>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a class="marca" href="index.html">
+                <img src="img/logo.svg" alt="" width="48" height="48">
+                <span>Instituto Mãos que Semeiam<span class="visualmente-oculto">, página inicial</span></span>
+            </a>
 
-        <nav aria-label="Menu principal">
-            <ul>
-                <li><a href="index.html" aria-current="page">Início</a></li>
-                <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="cadastro.html">Seja voluntário ou doador</a></li>
-            </ul>
-        </nav>
+            <nav class="menu" aria-label="Menu principal">
+                <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu-lista">
+                    <span class="menu__icone" aria-hidden="true"></span>
+                    <span class="menu__texto">Menu</span>
+                </button>
+                <ul class="menu__lista" id="menu-lista">
+                    <li><a class="menu__link" href="index.html" aria-current="page">Início</a></li>
+                    <li class="menu__item--submenu">
+                        <a class="menu__link" href="projetos.html">Projetos</a>
+                        <ul class="submenu">
+                            <li><a class="menu__link" href="projetos.html#reforco">Reforço Escolar Semente</a></li>
+                            <li><a class="menu__link" href="projetos.html#cozinha">Cozinha Solidária</a></li>
+                            <li><a class="menu__link" href="projetos.html#jovem">Jovem Conectado</a></li>
+                            <li><a class="menu__link" href="projetos.html#horta">Horta Comunitária Viva</a></li>
+                            <li><a class="menu__link" href="projetos.html#voluntariado">Voluntariado</a></li>
+                            <li><a class="menu__link" href="projetos.html#doacao">Doações</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="menu__link" href="cadastro.html">Seja voluntário ou doador</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- ===== CONTEÚDO PRINCIPAL (um único main por página) ===== -->
     <main id="conteudo">
 
         <!-- Apresentação: o único h1 da página -->
-        <section aria-labelledby="titulo-principal">
-            <h1 id="titulo-principal">Semeando oportunidades para crianças, jovens e famílias de Manaus</h1>
-            <figure>
-                <!-- picture: o navegador escolhe WebP (mais leve) e usa JPG como alternativa -->
-                <picture>
-                    <source type="image/webp"
-                            srcset="img/voluntarios-em-acao-800.webp 800w, img/voluntarios-em-acao-1200.webp 1200w"
-                            sizes="(max-width: 800px) 100vw, 800px">
-                    <img src="img/voluntarios-em-acao-800.jpg"
-                         srcset="img/voluntarios-em-acao-800.jpg 800w, img/voluntarios-em-acao-1200.jpg 1200w"
-                         sizes="(max-width: 800px) 100vw, 800px"
-                         alt="Ilustração de duas voluntárias ajudando três crianças com a lição de casa, ao redor de uma mesa com livros"
-                         width="800" height="450">
-                </picture>
-                <figcaption>Turma do Reforço Escolar Semente, na sede do instituto.</figcaption>
-            </figure>
-            <p>
-                Desde 2014, o <strong>Instituto Mãos que Semeiam</strong> atua na Zona Leste de Manaus
-                com educação, alimentação e inclusão digital. Acreditamos que cada pessoa carrega uma
-                semente de transformação, e que ela floresce quando encontra cuidado e oportunidade.
-            </p>
-            <p>
-                <a href="projetos.html">Conheça nossos projetos</a> ou
-                <a href="cadastro.html">faça parte dessa rede</a>.
-            </p>
+        <section class="secao secao--destaque" aria-labelledby="titulo-principal">
+            <div class="container grid apresentacao">
+                <h1 id="titulo-principal">Semeando oportunidades para crianças, jovens e famílias de Manaus</h1>
+                <figure>
+                    <!-- picture: o navegador escolhe WebP (mais leve) e usa JPG como alternativa -->
+                    <picture>
+                        <source type="image/webp"
+                                srcset="img/voluntarios-em-acao-800.webp 800w, img/voluntarios-em-acao-1200.webp 1200w"
+                                sizes="(max-width: 800px) 100vw, 800px">
+                        <img src="img/voluntarios-em-acao-800.jpg"
+                             srcset="img/voluntarios-em-acao-800.jpg 800w, img/voluntarios-em-acao-1200.jpg 1200w"
+                             sizes="(max-width: 800px) 100vw, 800px"
+                             alt="Ilustração de duas voluntárias ajudando três crianças com a lição de casa, ao redor de uma mesa com livros"
+                             width="800" height="450">
+                    </picture>
+                    <figcaption>Turma do Reforço Escolar Semente, na sede do instituto.</figcaption>
+                </figure>
+                <p>
+                    Desde 2014, o <strong>Instituto Mãos que Semeiam</strong> atua na Zona Leste de Manaus
+                    com educação, alimentação e inclusão digital. Acreditamos que cada pessoa carrega uma
+                    semente de transformação, e que ela floresce quando encontra cuidado e oportunidade.
+                </p>
+                <!-- "ou" e o ponto final continuam no texto, mas só para leitores de tela: na tela aparecem dois botões -->
+                <p class="grupo-botoes">
+                    <a class="botao botao--primario" href="projetos.html">Conheça nossos projetos</a><span class="visualmente-oculto"> ou </span>
+                    <a class="botao botao--contorno" href="cadastro.html">faça parte dessa rede</a><span class="visualmente-oculto">.</span>
+                </p>
+            </div>
         </section>
 
         <!-- Quem somos -->
-        <section id="quem-somos" aria-labelledby="titulo-quem-somos">
-            <h2 id="titulo-quem-somos">Quem somos</h2>
-            <p>
-                Somos uma organização da sociedade civil, sem fins lucrativos, formada por moradores,
-                educadores e voluntários que decidiram cuidar do próprio bairro. Tudo começou com uma
-                turma de reforço escolar em uma garagem; hoje são quatro projetos permanentes.
-            </p>
+        <section class="secao" id="quem-somos" aria-labelledby="titulo-quem-somos">
+            <div class="container">
+                <h2 id="titulo-quem-somos">Quem somos</h2>
+                <p class="secao__intro">
+                    Somos uma organização da sociedade civil, sem fins lucrativos, formada por moradores,
+                    educadores e voluntários que decidiram cuidar do próprio bairro. Tudo começou com uma
+                    turma de reforço escolar em uma garagem; hoje são quatro projetos permanentes.
+                </p>
 
-            <h3>Missão</h3>
-            <p>Promover o desenvolvimento de crianças, jovens e famílias em situação de vulnerabilidade social por meio da educação, da segurança alimentar e da inclusão digital.</p>
+                <div class="grid">
+                    <div class="cartao col-md-4">
+                        <div class="cartao__corpo">
+                            <h3>Missão</h3>
+                            <p>Promover o desenvolvimento de crianças, jovens e famílias em situação de vulnerabilidade social por meio da educação, da segurança alimentar e da inclusão digital.</p>
+                        </div>
+                    </div>
 
-            <h3>Visão</h3>
-            <p>Ser referência em transformação comunitária no Amazonas até 2030.</p>
+                    <div class="cartao col-md-4">
+                        <div class="cartao__corpo">
+                            <h3>Visão</h3>
+                            <p>Ser referência em transformação comunitária no Amazonas até 2030.</p>
+                        </div>
+                    </div>
 
-            <h3>Valores</h3>
-            <ul>
-                <li><strong>Dignidade:</strong> cada pessoa é tratada com respeito e escuta.</li>
-                <li><strong>Transparência:</strong> prestamos contas de cada doação recebida.</li>
-                <li><strong>Comunidade:</strong> as soluções nascem junto com quem vive o problema.</li>
-                <li><strong>Continuidade:</strong> preferimos ações permanentes a ações pontuais.</li>
-            </ul>
+                    <div class="cartao col-md-4">
+                        <div class="cartao__corpo">
+                            <h3>Valores</h3>
+                            <ul>
+                                <li><strong>Dignidade:</strong> cada pessoa é tratada com respeito e escuta.</li>
+                                <li><strong>Transparência:</strong> prestamos contas de cada doação recebida.</li>
+                                <li><strong>Comunidade:</strong> as soluções nascem junto com quem vive o problema.</li>
+                                <li><strong>Continuidade:</strong> preferimos ações permanentes a ações pontuais.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Números de impacto -->
-        <section id="impacto" aria-labelledby="titulo-impacto">
-            <h2 id="titulo-impacto">Nosso impacto em 2025</h2>
-            <ul>
-                <li><strong><data value="320">320</data> crianças</strong> acompanhadas no reforço escolar</li>
-                <li><strong><data value="18400">18.400</data> refeições</strong> servidas pela Cozinha Solidária</li>
-                <li><strong><data value="145">145</data> jovens</strong> formados em informática básica</li>
-                <li><strong><data value="96">96</data> voluntários</strong> ativos ao longo do ano</li>
-            </ul>
+        <!-- Números de impacto: 1 por linha no celular, 2 a partir de 576px e 4 a partir de 1200px -->
+        <section class="secao secao--alt" id="impacto" aria-labelledby="titulo-impacto">
+            <div class="container">
+                <h2 id="titulo-impacto">Nosso impacto em 2025</h2>
+                <ul class="grid impacto">
+                    <li class="impacto__item col-sm-6 col-xl-3"><strong class="impacto__numero"><data value="320">320</data> crianças</strong> acompanhadas no reforço escolar</li>
+                    <li class="impacto__item col-sm-6 col-xl-3"><strong class="impacto__numero"><data value="18400">18.400</data> refeições</strong> servidas pela Cozinha Solidária</li>
+                    <li class="impacto__item col-sm-6 col-xl-3"><strong class="impacto__numero"><data value="145">145</data> jovens</strong> formados em informática básica</li>
+                    <li class="impacto__item col-sm-6 col-xl-3"><strong class="impacto__numero"><data value="96">96</data> voluntários</strong> ativos ao longo do ano</li>
+                </ul>
+            </div>
         </section>
 
         <!-- Formas de ajudar: cada forma é independente, por isso article -->
-        <section id="como-ajudar" aria-labelledby="titulo-como-ajudar">
-            <h2 id="titulo-como-ajudar">Como você pode ajudar</h2>
+        <section class="secao" id="como-ajudar" aria-labelledby="titulo-como-ajudar">
+            <div class="container">
+                <h2 id="titulo-como-ajudar">Como você pode ajudar</h2>
 
-            <article>
-                <h3>Seja voluntário</h3>
-                <p>Doe algumas horas por semana dando aulas, cozinhando, cuidando da horta ou ajudando em eventos.</p>
-                <p><a href="cadastro.html">Quero ser voluntário</a></p>
-            </article>
+                <div class="grid">
+                    <article class="cartao col-lg-4">
+                        <div class="cartao__corpo">
+                            <h3>Seja voluntário</h3>
+                            <p>Doe algumas horas por semana dando aulas, cozinhando, cuidando da horta ou ajudando em eventos.</p>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--primario" href="cadastro.html">Quero ser voluntário</a>
+                        </div>
+                    </article>
 
-            <article>
-                <h3>Faça uma doação</h3>
-                <p>Doações únicas ou mensais mantêm os projetos funcionando o ano inteiro.</p>
-                <p><a href="cadastro.html">Quero doar</a></p>
-            </article>
+                    <article class="cartao col-lg-4">
+                        <div class="cartao__corpo">
+                            <h3>Faça uma doação</h3>
+                            <p>Doações únicas ou mensais mantêm os projetos funcionando o ano inteiro.</p>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--doar" href="cadastro.html">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.6 4.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.6 0 5.7 3.9 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg>
+                                Quero doar
+                            </a>
+                        </div>
+                    </article>
 
-            <article>
-                <h3>Divulgue nosso trabalho</h3>
-                <p>Compartilhar os projetos com amigos e empresas amplia a rede de apoio.</p>
-                <p><a href="projetos.html">Ver os projetos</a></p>
-            </article>
+                    <article class="cartao col-lg-4">
+                        <div class="cartao__corpo">
+                            <h3>Divulgue nosso trabalho</h3>
+                            <p>Compartilhar os projetos com amigos e empresas amplia a rede de apoio.</p>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--contorno" href="projetos.html">Ver os projetos</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </section>
 
         <!-- Conteúdo complementar -->
-        <aside aria-labelledby="titulo-transparencia">
-            <h2 id="titulo-transparencia">Transparência</h2>
-            <p>Publicamos todo ano um relatório de atividades com a origem e a aplicação dos recursos recebidos.</p>
+        <aside class="secao secao--alt" aria-labelledby="titulo-transparencia">
+            <div class="container">
+                <div class="alerta alerta--info">
+                    <svg class="alerta__icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7.5v.5"/></svg>
+                    <div class="alerta__conteudo">
+                        <h2 id="titulo-transparencia">Transparência</h2>
+                        <p>Publicamos todo ano um relatório de atividades com a origem e a aplicação dos recursos recebidos.</p>
+                    </div>
+                </div>
+            </div>
         </aside>
     </main>
 
+    <!-- Área onde os toasts aparecem (aria-live: o leitor de tela anuncia sem tirar o foco) -->
+    <div class="toast-area" role="status" aria-live="polite"></div>
+
     <!-- ===== RODAPÉ ===== -->
-    <footer>
-        <address>
-            <strong>Instituto Mãos que Semeiam</strong><br>
-            Rua das Sementes, 150, Bairro Esperança, Manaus - AM, CEP 69000-000<br>
-            Telefone: <a href="tel:+5592900000000">(92) 90000-0000</a><br>
-            E-mail: <a href="mailto:contato@maosquesemeiam.org.br">contato@maosquesemeiam.org.br</a>
-        </address>
-        <p><small>&copy; 2026 Instituto Mãos que Semeiam. Organização fictícia criada para a Experiência Prática I da disciplina Desenvolvimento Front-End para Web.</small></p>
+    <footer class="rodape">
+        <div class="container">
+            <div class="grid">
+                <div class="col-md-4">
+                    <address>
+                        <strong>Instituto Mãos que Semeiam</strong><br>
+                        Rua das Sementes, 150, Bairro Esperança, Manaus - AM, CEP 69000-000<br>
+                        Telefone: <a href="tel:+5592900000000">(92) 90000-0000</a><br>
+                        E-mail: <a href="mailto:contato@maosquesemeiam.org.br">contato@maosquesemeiam.org.br</a>
+                    </address>
+                </div>
+                <nav class="col-md-4" aria-label="Rodapé">
+                    <p class="rodape__titulo">Páginas</p>
+                    <ul class="rodape__lista">
+                        <li><a href="index.html" aria-current="page">Início</a></li>
+                        <li><a href="projetos.html">Projetos</a></li>
+                        <li><a href="cadastro.html">Seja voluntário ou doador</a></li>
+                    </ul>
+                </nav>
+                <div class="col-md-4">
+                    <p class="rodape__titulo">Transparência</p>
+                    <ul class="rodape__lista">
+                        <li><a href="design-system.html">Design System do site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rodape__base">
+                <small>&copy; 2026 Instituto Mãos que Semeiam. Organização fictícia criada para as Experiências Práticas da disciplina Desenvolvimento Front-End para Web.</small>
+            </div>
+        </div>
     </footer>
+
+    <script src="js/menu.js"></script>
+    <script src="js/feedback.js"></script>
 </body>
 </html>
