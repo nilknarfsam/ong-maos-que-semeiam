@@ -500,34 +500,56 @@
     font-size: 0.75rem;
 }
 
-/* Fallback para navegadores sem :user-invalid
-   (dentro do @supports para não marcar como erro, ao abrir a página,
-   os campos obrigatórios vazios que não têm placeholder) */
+/* Estados controlados pelo JavaScript (EP3, js/modules/validacao.js):
+   mostrarEstado() coloca .campo--erro ou .campo--sucesso no bloco do campo
+   (.campo nos campos comuns, o fieldset nos grupos de radio e checkbox)
+   e escreve o motivo na .campo__erro. */
+.campo--erro > .campo__erro {
+    display: flex;
+}
+.campo--erro > .campo__entrada {
+    border-color: var(--cor-erro);
+}
+.campo--sucesso > .campo__entrada {
+    border-color: var(--cor-sucesso);
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E7A3E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 1.25rem;
+}
+/* Grupo de opções com erro: borda na caixa do fieldset */
+fieldset.campo--erro {
+    border-color: var(--cor-erro);
+}
+.grupo--interno.campo--erro {
+    padding: var(--esp-2);
+    border: 2px solid var(--cor-erro);
+    border-radius: var(--raio-borda);
+}
+.grupo > .campo__erro,
+.grupo--interno > .campo__erro {
+    margin-top: var(--esp-2);
+}
+
+/* Validação só com CSS (EP2): vale para formulários sem novalidate, como a vitrine
+   do guia de estilo. Com o JavaScript ligado, o formulário de cadastro recebe
+   novalidate e passa a usar as classes acima. */
 @supports not selector(:user-invalid) {
-    .campo__entrada:not(:placeholder-shown):invalid {
+    form:not([novalidate]) .campo__entrada:not(:placeholder-shown):invalid {
         border-color: var(--cor-erro);
     }
-    .campo__entrada:not(:placeholder-shown):invalid ~ .campo__erro {
+    form:not([novalidate]) .campo__entrada:not(:placeholder-shown):invalid ~ .campo__erro {
         display: flex;
     }
 }
-
-/* Depois de uma tentativa de envio (classe colocada pelo js/cadastro.js),
-   todos os campos inválidos mostram o erro, mesmo os que não foram tocados */
-.formulario--enviado .campo__entrada:invalid {
+form:not([novalidate]) .campo__entrada:user-invalid {
     border-color: var(--cor-erro);
 }
-.formulario--enviado .campo__entrada:invalid ~ .campo__erro {
+form:not([novalidate]) .campo__entrada:user-invalid ~ .campo__erro {
     display: flex;
 }
-
-.campo__entrada:user-invalid {
-    border-color: var(--cor-erro);
-}
-.campo__entrada:user-invalid ~ .campo__erro {
-    display: flex;
-}
-.campo__entrada:user-valid {
+form:not([novalidate]) .campo__entrada:user-valid {
     border-color: var(--cor-sucesso);
     padding-right: 2.75rem;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E7A3E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
@@ -1002,4 +1024,39 @@
     .cartao:focus-within {
         transform: none;
     }
+}
+
+/* ==========================================================================
+   CADASTROS FEITOS NESTE NAVEGADOR (EP3, lidos do localStorage)
+   ========================================================================== */
+.meus-cadastros {
+    margin-bottom: var(--esp-5);
+}
+.registros {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.registro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-1);
+    padding-bottom: var(--esp-3);
+    border-bottom: 1px solid var(--cor-borda);
+}
+.registro:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+.registro__nome {
+    margin: 0;
+    font-weight: var(--peso-forte);
+}
+.registro__data {
+    margin: 0;
+    font-size: var(--fonte-xs);
+    color: var(--cor-texto-suave);
 }

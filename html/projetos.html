@@ -1,0 +1,153 @@
+<!-- View projetos: fragmento carregado pelo roteador (js/modules/roteador.js) dentro do <main id="app"> do index.html.
+ Sem head e sem body. Os caminhos (imagens/...) são relativos ao index.html, que fica na raiz. -->
+<div class="secao secao--destaque">
+    <div class="container">
+        <h1>Nossos projetos sociais</h1>
+        <p>
+            Aqui você conhece os quatro projetos permanentes do instituto e escolhe como participar:
+            doando seu tempo como voluntário ou contribuindo com uma de nossas campanhas.
+        </p>
+
+        <!-- Sumário interno: atalhos para os três caminhos da página -->
+        <nav class="sumario" aria-label="Nesta página">
+            <ul class="sumario__lista">
+                <li><a class="sumario__link" href="#/projetos/projetos">Projetos em andamento</a></li>
+                <li><a class="sumario__link" href="#/projetos/voluntariado">Como ser voluntário</a></li>
+                <li><a class="sumario__link" href="#/projetos/doacao">Campanhas de doação</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Projetos: 1 por linha no celular, 2 a partir de 768px e 4 a partir de 1200px -->
+<section class="secao" id="projetos" aria-labelledby="titulo-projetos">
+    <div class="container">
+        <h2 id="titulo-projetos">Projetos em andamento</h2>
+
+        <!-- Os cartões são gerados por js/telas/projetos.js a partir de js/dados/projetos.js -->
+        <div class="grid" id="lista-projetos"></div>
+    </div>
+</section>
+
+<!-- A partir de 992px: conteúdo em 8 colunas e o aside de Parcerias em 4 -->
+<div class="secao secao--alt">
+    <div class="container grid">
+        <div class="col-lg-8 fluxo">
+            <!-- Caminho 1: voluntariado -->
+            <section id="voluntariado" aria-labelledby="titulo-voluntariado">
+                <h2 id="titulo-voluntariado">Como ser voluntário</h2>
+                <p>O voluntariado começa com poucos passos:</p>
+                <ol class="passos">
+                    <li><span>Preencha o <a href="#/cadastro">formulário de cadastro</a>.</span></li>
+                    <li><span>Nossa equipe entra em contato para uma conversa de boas-vindas.</span></li>
+                    <li><span>Participe da formação inicial de 4 horas, aos sábados.</span></li>
+                    <li><span>Comece no projeto e no horário que você escolheu.</span></li>
+                </ol>
+
+                <h3>Requisitos</h3>
+                <ul>
+                    <li>Ter 16 anos ou mais (menores de 18 com autorização dos responsáveis).</li>
+                    <li>Disponibilidade mínima de 2 horas por semana.</li>
+                    <li>Compromisso com as regras de proteção de crianças e adolescentes.</li>
+                </ul>
+            </section>
+
+            <!-- Caminho 2: doação -->
+            <section id="doacao" aria-labelledby="titulo-doacao">
+                <h2 id="titulo-doacao">Campanhas de doação</h2>
+                <p>Doações podem ser únicas ou mensais. Estas são as campanhas ativas e quanto já foi arrecadado:</p>
+
+                <div class="grid">
+                    <article class="cartao col-md-6">
+                        <div class="cartao__corpo">
+                            <h3>Material escolar 2027</h3>
+                            <p>Kits com cadernos, lápis e mochila para as 320 crianças do reforço escolar no início do ano letivo.</p>
+                            <div class="campanha__meta">
+                                <label for="meta-escolar">Arrecadado: R$ 9.600 de R$ 16.000</label>
+                                <span class="campanha__percentual" aria-hidden="true">60%</span>
+                            </div>
+                            <progress class="campanha__barra" id="meta-escolar" max="16000" value="9600">60%</progress>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--doar" href="#/cadastro">Quero doar para esta campanha</a>
+                        </div>
+                    </article>
+                    <article class="cartao col-md-6">
+                        <div class="cartao__corpo">
+                            <h3>Natal Solidário</h3>
+                            <p>Cestas de Natal para as 190 famílias atendidas pela Cozinha Solidária.</p>
+                            <div class="campanha__meta">
+                                <label for="meta-natal">Arrecadado: R$ 5.700 de R$ 19.000</label>
+                                <span class="campanha__percentual" aria-hidden="true">30%</span>
+                            </div>
+                            <progress class="campanha__barra" id="meta-natal" max="19000" value="5700">30%</progress>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--doar" href="#/cadastro">Quero doar para esta campanha</a>
+                        </div>
+                    </article>
+                    <article class="cartao col-md-6">
+                        <div class="cartao__corpo">
+                            <h3>Computador para Todos</h3>
+                            <p>Troca de 5 computadores do laboratório do Jovem Conectado.</p>
+                            <div class="campanha__meta">
+                                <label for="meta-computadores">Arrecadado: R$ 7.500 de R$ 10.000</label>
+                                <span class="campanha__percentual" aria-hidden="true">75%</span>
+                            </div>
+                            <progress class="campanha__barra" id="meta-computadores" max="10000" value="7500">75%</progress>
+                        </div>
+                        <div class="cartao__acoes">
+                            <a class="botao botao--doar" href="#/cadastro">Quero doar para esta campanha</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Dados tabulares: aqui a tabela é o elemento certo -->
+            <section aria-labelledby="titulo-resultados">
+                <h2 id="titulo-resultados">Resultados e transparência</h2>
+                <div class="tabela-rolagem">
+                    <table class="tabela">
+                        <caption>Pessoas atendidas por projeto em 2024 e 2025</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Projeto</th>
+                                <th scope="col">2024</th>
+                                <th scope="col">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Reforço Escolar Semente</th>
+                                <td>280</td>
+                                <td>320</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cozinha Solidária (famílias)</th>
+                                <td>150</td>
+                                <td>190</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Jovem Conectado</th>
+                                <td>110</td>
+                                <td>145</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Horta Comunitária Viva (famílias)</th>
+                                <td>40</td>
+                                <td>62</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <aside class="cartao col-lg-4 lateral" aria-labelledby="titulo-parceiros">
+            <div class="cartao__corpo">
+                <h2 id="titulo-parceiros">Quer propor uma parceria?</h2>
+                <p>Empresas, escolas e igrejas podem apoiar um projeto específico. Escreva para <a class="botao botao--contorno" href="mailto:parcerias@maosquesemeiam.org.br">parcerias@maosquesemeiam.org.br</a>.</p>
+            </div>
+        </aside>
+    </div>
+</div>

@@ -1,14 +1,8 @@
 /*
  * Máscaras de digitação para CPF, telefone e CEP.
- *
- * Melhoria progressiva: a validação de verdade é feita pelo HTML
- * (atributos required, pattern e maxlength). Este script só formata
- * o valor enquanto a pessoa digita. Se o JavaScript estiver desligado,
- * o formulário continua validando normalmente.
- *
  * Como usar: coloque data-mascara="cpf", "telefone" ou "cep" no <input>.
+ * A tela chama aplicarMascara(campo) no evento input (delegado).
  */
-
 const mascaras = {
     // 000.000.000-00
     cpf: (d) => d.slice(0, 11)
@@ -29,12 +23,8 @@ const mascaras = {
     cep: (d) => d.slice(0, 8).replace(/^(\d{5})(\d)/, '$1-$2'),
 };
 
-document.querySelectorAll('[data-mascara]').forEach((campo) => {
+export function aplicarMascara(campo) {
     const aplicar = mascaras[campo.dataset.mascara];
     if (!aplicar) return;
-
-    campo.addEventListener('input', () => {
-        const somenteDigitos = campo.value.replace(/\D/g, '');
-        campo.value = aplicar(somenteDigitos);
-    });
-});
+    campo.value = aplicar(campo.value.replace(/\D/g, ''));
+}

@@ -16,12 +16,14 @@
 
 ### Páginas
 
-| Página | Link direto | Conteúdo |
+Desde a EP III o site é uma **SPA** (*Single Page Application*): o `index.html` é a única página, e cada tela é uma rota com `#/`. Os endereços antigos (`projetos.html`, `cadastro.html`, `design-system.html`) redirecionam para os novos.
+
+| Tela | Link direto | Conteúdo |
 |---|---|---|
-| Início | [index.html](https://nilknarfsam.github.io/ong-maos-que-semeiam/index.html) | Apresentação da ONG: quem somos, missão, visão, valores, impacto, formas de ajudar e contatos |
-| Projetos | [projetos.html](https://nilknarfsam.github.io/ong-maos-que-semeiam/projetos.html) | Os 4 projetos sociais, o passo a passo do voluntariado, as campanhas de doação e os resultados |
-| Cadastro | [cadastro.html](https://nilknarfsam.github.io/ong-maos-que-semeiam/cadastro.html) | Formulário de voluntários e doadores, com validação nativa e máscaras de CPF, telefone e CEP |
-| **Design System** | [design-system.html](https://nilknarfsam.github.io/ong-maos-que-semeiam/design-system.html) | Guia visual da plataforma: variáveis, botões, badges, alertas, validação, modal e toast (EP II) |
+| Início | [#/inicio](https://nilknarfsam.github.io/ong-maos-que-semeiam/#/inicio) | Apresentação da ONG: quem somos, missão, visão, valores, impacto, formas de ajudar e contatos |
+| Projetos | [#/projetos](https://nilknarfsam.github.io/ong-maos-que-semeiam/#/projetos) | Os 4 projetos sociais (cartões gerados por template JavaScript), o passo a passo do voluntariado, as campanhas de doação e os resultados |
+| Cadastro | [#/cadastro](https://nilknarfsam.github.io/ong-maos-que-semeiam/#/cadastro) | Formulário de voluntários e doadores com validação em JavaScript, rascunho salvo no navegador e lista dos cadastros enviados (localStorage) |
+| **Design System** | [html/design-system.html](https://nilknarfsam.github.io/ong-maos-que-semeiam/html/design-system.html) | Guia visual da plataforma: variáveis, botões, badges, alertas, validação, modal e toast (EP II) |
 
 ---
 
@@ -32,6 +34,7 @@
 4. [Estrutura de pastas](#4-estrutura-de-pastas)
 5. [EP I: estrutura semântica em HTML5](#5-ep-i-estrutura-semântica-em-html5)
 6. [EP II: Design System, layouts responsivos e componentes](#6-ep-ii-design-system-layouts-responsivos-e-componentes)
+   - [6A. EP III: SPA em JavaScript, templates, validação e localStorage](#6a-ep-iii-spa-em-javascript-templates-validação-e-localstorage)
 7. [Acessibilidade](#7-acessibilidade)
 8. [Validação e testes](#8-validação-e-testes)
 9. [Como executar](#9-como-executar)
@@ -65,6 +68,7 @@ O site precisa apresentar a organização, divulgar os projetos, mostrar a prest
 - criar um *Design System* com variáveis CSS para cores, tipografia e espaçamentos (EP II);
 - construir layouts responsivos com CSS Grid de 12 colunas, Flexbox e cinco *breakpoints* (EP II);
 - desenvolver menu responsivo com *dropdown* e hambúrguer, cartões, estados de botões, validação visual e componentes de *feedback* (EP II);
+- transformar o site em uma SPA com JavaScript modular: roteamento, *templates*, validação de formulário, `localStorage` e uma biblioteca externa (EP III);
 - versionar e publicar o projeto com Git, GitHub e GitHub Pages (todas as EPs).
 
 ## 3. Andamento das entregas
@@ -73,33 +77,55 @@ O site precisa apresentar a organização, divulgar os projetos, mostrar a prest
 |---|---|---|---|
 | EP I | Fundamentos e estruturação: HTML5 semântico, formulário e diretórios | ✅ Entregue | tag `ep1` |
 | EP II | Design System, CSS3, Grid, Flexbox e componentes interativos | ✅ Entregue | tag `ep2` |
-| EP III | (aguardando enunciado) | — | — |
+| EP III | SPA em JavaScript: roteamento por hash, templates, eventos, validação, localStorage, Day.js e ES Modules | 🚧 Em andamento | tag `ep3` (na entrega) |
 | EP IV | (aguardando enunciado) | — | — |
 
 Cada entrega tem uma tag no Git. Para ver o site sem CSS (versão da EP I): `git checkout ep1`. Para voltar à versão atual: `git checkout main`.
 
 ## 4. Estrutura de pastas
 
+Separação de responsabilidades: cada pasta guarda um tipo de arquivo (estrutura, estilo, imagens e lógica).
+
 ```
 projeto-ong/
-├── index.html            → página inicial
-├── projetos.html         → projetos, voluntariado, doações e resultados
-├── cadastro.html         → formulário de voluntários e doadores
-├── design-system.html    → guia visual do Design System (EP II)
+├── index.html            → casca da SPA: cabeçalho, menu, <main id="app"> vazio, rodapé e um único script (js/main.js)
+├── projetos.html         → endereço antigo: redireciona para index.html#/projetos
+├── cadastro.html         → endereço antigo: redireciona para index.html#/cadastro
+├── design-system.html    → endereço antigo: redireciona para html/design-system.html
 ├── README.md
+├── html/                 → (EP III) views: o conteúdo de cada tela, em fragmentos sem head e body
+│   ├── inicio.html
+│   ├── projetos.html     → tem o contêiner vazio #lista-projetos, preenchido por template
+│   ├── cadastro.html     → formulário, lista "Cadastros feitos neste navegador" e modal
+│   └── design-system.html → guia visual do Design System (EP II), página completa
 ├── css/                  → (EP II) carregados nesta ordem:
 │   ├── variaveis.css     → tokens: cores, tipografia, espaçamentos, sombras, camadas
-│   ├── base.css          → reset leve, tipografia global, links, foco visível
+│   ├── base.css          → reset leve, tipografia global, links, foco visível, [hidden]
 │   ├── layout.css        → container, grid de 12 colunas, cabeçalho, seções, rodapé
 │   ├── componentes.css   → menu, botões, cartões, badges, alertas, formulário, modal, toast
 │   ├── utilitarios.css   → pequenas classes de apoio
-│   └── guia.css          → estilos exclusivos da página design-system.html
-├── js/
-│   ├── mascaras.js       → (EP I) formata CPF, telefone e CEP durante a digitação
-│   ├── menu.js           → (EP II) abre e fecha o menu hambúrguer, fecha com Esc
-│   ├── cadastro.js       → (EP II) resumo de erros, modal de confirmação e toast do cadastro
-│   └── feedback.js       → (EP II) modal, toast e alertas que podem ser fechados
-└── img/                  → logotipo (SVG) e ilustrações em WebP + JPG/PNG
+│   └── guia.css          → estilos exclusivos do guia de estilo
+├── imagens/              → logotipo (SVG) e ilustrações em WebP + JPG/PNG
+└── js/                   → (EP III) ES Modules, em camadas:
+    ├── main.js           → ponto de entrada: monta as rotas, registra os eventos e inicia o roteador
+    ├── guia.js           → ponto de entrada do guia de estilo (menu e feedback)
+    ├── dados/
+    │   └── projetos.js   → os 4 projetos em um array de objetos
+    ├── modules/
+    │   ├── roteador.js   → navegação por hash, fetch das views, cache, título, menu ativo e foco
+    │   ├── templates.js  → funções puras que geram HTML (cartão, badge, alerta, toast, item de cadastro)
+    │   ├── validacao.js  → regras (RegEx, CPF, idade, consistência entre campos) e estados visuais
+    │   ├── armazenamento.js → único acesso ao localStorage (salvar, ler, remover, limparTudo)
+    │   ├── datas.js      → isola o Day.js: idade() e formatarData()
+    │   ├── feedback.js   → toast, modal e alertas (delegação de eventos)
+    │   ├── menu.js       → menu hambúrguer e aria-current
+    │   └── mascaras.js   → máscaras de CPF, telefone e CEP
+    ├── telas/
+    │   ├── projetos.js   → gera os cartões e guarda o projeto do botão "Quero ajudar"
+    │   └── cadastro.js   → junta validação, armazenamento, templates e feedback no formulário
+    └── vendor/
+        ├── dayjs.min.js  → biblioteca Day.js 1.11.23 (instalada pelo npm e servida junto com o site)
+        └── pt-br.js      → idioma português do Day.js
 ```
 
 A arquitetura do CSS separa **o que o sistema é** (tokens), **como a página se organiza** (layout) e **as peças reutilizáveis** (componentes). A ordem de carregamento vai do mais genérico ao mais específico, o que reduz conflitos de especificidade.
@@ -185,12 +211,31 @@ As classes seguem a convenção **BEM** (`.bloco__elemento--modificador`).
 | Estrutura das páginas | `.impacto__item`, `.sumario`, `.ficha`, `.passos`, `.campanha__meta`, `.campanha__barra`, `.tabela`, `.grupo`, `.grupo--interno`, `.faq`, `.lateral` | Números de impacto, sumário em pílulas, ficha dos projetos, passos numerados com contador CSS, meta e barra de progresso das campanhas, tabela zebrada com rolagem, grupos do formulário, perguntas frequentes e aside fixo na rolagem a partir de 992px. |
 | Toast | `.toast-area`, `.toast` | Notificação não obstrutiva com `aria-live="polite"`, que some em 5 s. A função `mostrarToast(mensagem, tipo)` fica disponível para integração com o back-end. |
 
+## 6A. EP III: SPA em JavaScript, templates, validação e localStorage
+
+- **Roteamento por hash** (`js/modules/roteador.js`): `#/inicio`, `#/projetos` e `#/cadastro`. O GitHub Pages não redireciona rotas para o `index.html`, então a History API daria 404 ao recarregar. O roteador escuta `hashchange` e `DOMContentLoaded`, busca a view em `html/` com `fetch` (com cache em `Map`), converte com `<template>` e injeta com `replaceChildren()`. Depois atualiza o `document.title`, o `aria-current` do menu e leva o foco ao `h1`. `#/projetos/horta` abre a tela e leva o foco à seção.
+- **Templates** (`js/modules/templates.js`): Template Literals com `map()` + `join('')` e uma única atribuição ao `innerHTML`. Todo texto passa por `escapar()`.
+- **Eventos com delegação:** registrados uma vez no `main.js`, em elementos fixos, para não se perderem quando a view é trocada. O `close` do `<dialog>` não borbulha, então é ouvido na fase de captura.
+- **Validação** (`js/modules/validacao.js`): RegEx para nome, e-mail, celular, CEP e número; dígitos verificadores do CPF; idade mínima de 16 anos; consistência entre campos (voluntário exige projeto e horas; doador exige valor e frequência). Estados `.campo--erro` / `.campo--sucesso` e mensagem ligada por `aria-describedby`.
+- **localStorage** (`js/modules/armazenamento.js`): `ong:cadastros` (lista de envios), `ong:rascunho` (formulário em andamento, sem o CPF) e `ong:projeto-interesse`. Botão "Limpar meus dados" apaga tudo.
+- **Biblioteca externa:** Day.js 1.11.23 (idade e data em português), isolada em `js/modules/datas.js`, com reserva em `Date`/`Intl` se não carregar.
+
+### Problemas encontrados nos testes e corrigidos
+| Problema | Correção |
+|---|---|
+| Sem conexão, o `fetch` rejeitava e a tela ficava parada com `aria-busy` | `try/catch` e tela de aviso com "Tentar de novo" |
+| View inexistente (404) injetava a página de erro do servidor | conferência de `resposta.ok` |
+| Com rede lenta, uma resposta atrasada sobrescrevia a tela mais recente | contador de navegação que descarta resultados antigos |
+| O link "Pular para o conteúdo" (`#app`) era tratado como rota | o roteador ignora hashes que não começam com `#/` |
+| JSON válido no formato errado no `localStorage` quebrava a tela | `ler()` confere se o valor é uma lista quando o padrão é uma lista |
+| Seção com `hidden` aparecia (o `display: flex` do `.cartao` vencia) | `[hidden] { display: none !important; }` no `base.css` |
+
 ## 7. Acessibilidade
 
 O projeto segue as recomendações da **WCAG 2.1, nível AA**:
 - **Contraste:** todas as combinações de texto têm contraste de pelo menos 4,5:1, medido com a fórmula de luminância relativa da WCAG.
 - **A cor nunca é o único sinal:** erros, alertas e badges trazem sempre texto e, quando há espaço, ícone.
-- **Teclado:** link "Pular para o conteúdo", foco visível com `:focus-visible`, dropdown acessível por `:focus-within`, Esc para fechar o menu e o modal.
+- **Teclado:** link "Pular para o conteúdo", foco levado ao título de cada tela aberta pela SPA, foco visível com `:focus-visible`, dropdown acessível por `:focus-within`, Esc para fechar o menu e o modal.
 - **Leitores de tela:** `aria-current` no menu, `aria-expanded`/`aria-controls` no botão do hambúrguer, `aria-describedby` ligando dicas e erros aos campos, `aria-live` nos toasts e `role="alert"` nos erros.
 - **Toque:** área mínima de 44 × 44px em links de menu, botões e opções.
 - **Preferências do usuário:** tamanhos em `rem`, que respeitam o zoom e a fonte escolhida no navegador, e `@media (prefers-reduced-motion: reduce)`, que desliga as animações.
@@ -209,9 +254,10 @@ O projeto segue as recomendações da **WCAG 2.1, nível AA**:
 
 ## 9. Como executar
 
-Não há dependências nem etapa de *build*:
+Não há etapa de *build*, mas desde a EP III o site **precisa de um servidor local**: o `fetch` das views e os ES Modules não funcionam abrindo o arquivo direto (`file://`).
 1. clone o repositório: `git clone https://github.com/nilknarfsam/ong-maos-que-semeiam.git`;
-2. abra o `index.html` no navegador, ou acesse o [site publicado](https://nilknarfsam.github.io/ong-maos-que-semeiam/).
+2. rode um servidor na pasta, por exemplo a extensão **Live Server** do VS Code, `npx serve` ou `python -m http.server`;
+3. abra o endereço indicado (ex.: `http://localhost:8080/`), ou acesse o [site publicado](https://nilknarfsam.github.io/ong-maos-que-semeiam/).
 
 A fonte Nunito vem do Google Fonts. Sem internet, os títulos usam a fonte do sistema.
 
